@@ -55,7 +55,7 @@ body.theme-light-parchment {
 html, body, p, span, input, textarea, select, button, label, select option {
   font-family: var(--font-sans) !important;
   letter-spacing: -0.05em !important;
-  font-size: 15px;
+  font-size: 15.5px;
 }
 
 body {
@@ -111,7 +111,7 @@ h1, h2, h3, h4, .serif-font {
 }
 
 .helper-title {
-  font-size: 18px !important;
+  font-size: 19px !important;
   font-weight: 700 !important;
   color: var(--text-gold);
   margin-bottom: 8px;
@@ -125,7 +125,7 @@ h1, h2, h3, h4, .serif-font {
 }
 
 .helper-content {
-  font-size: 15px !important;
+  font-size: 15.5px !important;
   color: var(--text-primary);
   opacity: 0.95 !important;
   line-height: 1.6 !important;
@@ -168,10 +168,10 @@ h1, h2, h3, h4, .serif-font {
   background: transparent;
   border: 1px solid transparent;
   color: var(--text-secondary);
-  padding: 10px 18px;
+  padding: 12px 20px;
   border-radius: 6px;
-  font-weight: 600;
-  font-size: 15.5px !important;
+  font-weight: 700;
+  font-size: 16.5px !important;
   white-space: nowrap;
   cursor: pointer;
   display: inline-flex;
@@ -354,14 +354,14 @@ textarea.stellar-input {
 }
 
 .playbook-card h4 {
-  font-size: 19px !important;
+  font-size: 20px !important;
   color: var(--text-gold) !important;
   font-weight: 700 !important;
   margin-bottom: 6px;
 }
 
 .playbook-card p {
-  font-size: 14.5px !important;
+  font-size: 15px !important;
   color: var(--text-primary) !important;
   line-height: 1.6 !important;
   opacity: 0.95 !important;
@@ -393,10 +393,10 @@ body.theme-light-parchment .playbook-card.selected {
   background: rgba(3, 7, 18, 0.4);
   border: 1px solid rgba(223, 183, 108, 0.2);
   border-radius: 6px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   text-align: left;
   color: var(--text-primary);
-  font-size: 14.5px !important;
+  font-size: 16px !important;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -418,11 +418,11 @@ body.theme-light-parchment .playbook-card.selected {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 6px;
   border: 1px solid rgba(223, 183, 108, 0.2);
   background: rgba(3, 7, 18, 0.4);
-  font-size: 14.5px !important;
+  font-size: 16px !important;
   transition: all 0.2s ease;
 }
 
@@ -1001,7 +1001,7 @@ body.theme-light-parchment .sync-btn-logout:hover {
 
 /* Global text size and visibility boost */
 label {
-  font-size: 14.5px !important;
+  font-size: 15.5px !important;
   font-weight: 700 !important;
   color: var(--text-gold) !important;
   display: inline-block !important;
@@ -1011,13 +1011,13 @@ label {
 .customizer-options-group div, 
 .customizer-options-group span, 
 .customizer-options-group label {
-  font-size: 14px !important;
+  font-size: 15px !important;
 }
 
 /* Make paragraph descriptions inside panels much more visible */
 .glass-panel p {
-  font-size: 15px !important;
-  line-height: 1.60 !important;
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
 }
 
 /* Settings and control descriptions */
@@ -1041,6 +1041,6 @@ label {
 
 /* Character creator subtitle styling */
 .playbook-grid + div label {
-  font-size: 14.5px !important;
+  font-size: 15.5px !important;
   color: var(--text-gold) !important;
 }

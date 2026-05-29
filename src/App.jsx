@@ -1941,10 +1941,10 @@ export default function App() {
               ) : (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                   {persistentInventory.map((inv) => (
-                    <div key={inv.id} style={{ background: 'rgba(223, 183, 108, 0.05)', border: '1px solid rgba(223, 183, 108, 0.2)', padding: '8px 12px', borderRadius: '6px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div key={inv.id} style={{ background: 'rgba(223, 183, 108, 0.05)', border: '1px solid rgba(223, 183, 108, 0.2)', padding: '8px 12px', borderRadius: '6px', fontSize: '13.5px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <div>
                         <strong>{inv.type}</strong> {" | "}
-                        <span style={{ color: 'var(--text-secondary)' }}>{inv.condition.slice(0, 5)}</span>
+                        <span style={{ color: 'var(--text-secondary)' }}>{inv.condition}</span>
                       </div>
                       <button 
                         onClick={() => deleteInventoryItem(inv.id)}
