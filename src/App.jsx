@@ -1067,7 +1067,7 @@ export default function App() {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '10px' }}>
             <h2 className="serif-font" style={{ fontSize: '20px', color: 'var(--text-gold)' }}>
-              1. 등대지기 플레이북 자아 설정
+              <span className="sans-font">1.</span> 등대지기 플레이북 자아 설정
             </h2>
             <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
               등대지기 고유대장 번호: <span className="stellar-badge">No. {keeperProfile.keeperNo}</span>
@@ -1278,16 +1278,16 @@ export default function App() {
           
           <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
             <span className="serif-font" style={{ fontSize: '18px', color: shiftState.phase === 1 ? 'var(--text-gold)' : 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {shiftState.phase > 1 ? "✓" : "1."} 시작 및 기후 결정
+              {shiftState.phase > 1 ? "✓" : <span className="sans-font">1.</span>} 시작 및 기후 결정
             </span>
             <span className="serif-font" style={{ fontSize: '18px', color: shiftState.phase === 2 ? 'var(--text-gold)' : 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {shiftState.phase > 2 ? "✓" : "2."} 점등 의식 {shiftState.isLampLit && "🔥"}
+              {shiftState.phase > 2 ? "✓" : <span className="sans-font">2.</span>} 점등 의식 {shiftState.isLampLit && "🔥"}
             </span>
             <span className="serif-font" style={{ fontSize: '18px', color: shiftState.phase === 3 ? 'var(--text-gold)' : 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {shiftState.phase > 3 ? "✓" : "3."} 밤의 임무 ({shiftState.duties.length}개 완료)
+              {shiftState.phase > 3 ? "✓" : <span className="sans-font">3.</span>} 밤의 임무 ({shiftState.duties.length}개 완료)
             </span>
             <span className="serif-font" style={{ fontSize: '18px', color: shiftState.phase === 4 ? 'var(--text-gold)' : 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              4. 일과 종료 및 성찰
+              <span className="sans-font">4.</span> 일과 종료 및 성찰
             </span>
           </div>
 
@@ -1525,19 +1525,19 @@ export default function App() {
                       className="stellar-btn" 
                       onClick={() => { setActiveDutyType('maintenance'); triggerMaintenanceTask(); }}
                     >
-                      <Settings size={16} /> 1. 도구 및 등대 유지보수
+                      <Settings size={16} /> <span className="sans-font">1.</span> 도구 및 등대 유지보수
                     </button>
                     <button 
                       className="stellar-btn" 
                       onClick={() => { setActiveDutyType('observation'); triggerObservationTask(); }}
                     >
-                      <BookOpen size={16} /> 2. 경외로운 우주 관측
+                      <BookOpen size={16} /> <span className="sans-font">2.</span> 경외로운 우주 관측
                     </button>
                     <button 
                       className="stellar-btn" 
                       onClick={() => { setActiveDutyType('happening'); triggerHappeningTask(); }}
                     >
-                      <AlertCircle size={16} /> 3. 불시의 우주 사건
+                      <AlertCircle size={16} /> <span className="sans-font">3.</span> 불시의 우주 사건
                     </button>
                   </div>
                 </div>

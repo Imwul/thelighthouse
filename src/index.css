@@ -1044,3 +1044,8 @@ label {
   font-size: 15.5px !important;
   color: var(--text-gold) !important;
 }
+
+/* Custom utility for modern sans-serif numbers and normal labels */
+.sans-font, .sans-serif {
+  font-family: 'Pretendard', -apple-system, sans-serif !important;
+}
