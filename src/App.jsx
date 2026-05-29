@@ -52,10 +52,26 @@ import {
   Lock
 } from 'lucide-react';
 
+const InboxUploadIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }}>
+    <path d="M4 14V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V14" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M2 14H8L10 16H14L16 14H22" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="#3b82f6" fillOpacity="0.25" />
+    <path d="M12 3L16 7H13V11H11V7H8L12 3Z" fill="#ef4444" stroke="#ef4444" strokeWidth="1" strokeLinejoin="round" />
+  </svg>
+);
+
+const InboxDownloadIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }}>
+    <path d="M4 14V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V14" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M2 14H8L10 16H14L16 14H22" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="#3b82f6" fillOpacity="0.25" />
+    <path d="M12 11L8 7H11V3H13V7H16L12 11Z" fill="#ef4444" stroke="#ef4444" strokeWidth="1" strokeLinejoin="round" />
+  </svg>
+);
+
 export default function App() {
   // 테마 상태 ('midnight' = 어두운 우주 보이드, 'parchment' = 양모 크림)
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('lighthouse_theme') || 'midnight';
+    return localStorage.getItem('lighthouse_theme') || 'parchment';
   });
 
   // 탭 상태 네비게이션
@@ -896,56 +912,83 @@ export default function App() {
             </div>
           </div>
 
-          {/* 구글 로그인 컨트롤 */}
+          {/* 구글 로그인 컨트롤 (스크린샷 Mockup과 100% 동일하게 일치시킨 수평형 동기화 제어 바) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {googleUser ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <img 
-                  src={googleUser.picture} 
-                  alt={googleUser.name} 
-                  style={{ width: '38px', height: '38px', borderRadius: '50%', border: '1px solid var(--border-color)' }} 
-                />
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{googleUser.name}</span>
-                  <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
-                    {googleUser.isDemo ? "체험 모드 가동 중" : "구글 연동 완료"}
-                  </span>
+              <div className="sync-bar-container">
+                {/* 1. CLOUD SYNC 상태 배지 */}
+                <div className="sync-status-badge">
+                  <span className="sync-status-dot active" />
+                  <span>CLOUD SYNC ({googleUser.name})</span>
                 </div>
-                
+
+                {/* 2. 올리기 캡슐 버튼 (어두운 초록) */}
                 <button 
-                  className="stellar-btn-outline" 
-                  onClick={() => setIsSettingsOpen(true)}
-                  style={{ padding: '6px 12px', fontSize: '12px' }}
+                  className="sync-btn-upload" 
+                  disabled={isCloudSyncing}
+                  onClick={syncToCloud}
+                  title="오늘 작성한 일지 및 인벤토리를 클라우드로 안전하게 업로드"
                 >
-                  <Cloud size={14} /> 동기화 제어
+                  <InboxUploadIcon />
+                  <span>올리기</span>
                 </button>
 
+                {/* 3. 가져오기 캡슐 버튼 (흰색/테두리) */}
                 <button 
-                  className="stellar-btn-outline" 
-                  onClick={handleLogOut}
-                  style={{ padding: '6px 12px', fontSize: '12px', borderColor: '#ef4444', color: '#ef4444' }}
+                  className="sync-btn-download" 
+                  disabled={isCloudSyncing}
+                  onClick={restoreFromCloud}
+                  title="클라우드 저장소 백업에서 모든 일지 데이터를 내 컴퓨터로 복원"
                 >
-                  <LogOut size={12} /> 로그아웃
+                  <InboxDownloadIcon />
+                  <span>가져오기</span>
+                </button>
+
+                {/* 4. 로그아웃 버튼 (분홍/빨강) */}
+                <button 
+                  className="sync-btn-logout" 
+                  onClick={handleLogOut}
+                  title="구글 계정 연결 해제 및 로그아웃"
+                >
+                  <span>로그아웃</span>
                 </button>
               </div>
             ) : (
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <button className="stellar-btn" onClick={handleGoogleLogin}>
-                  <LogIn size={16} /> 구글 로그인 연동
+              <div className="sync-bar-container">
+                {/* 비활성화 상태 배지 */}
+                <div className="sync-status-badge" style={{ opacity: 0.8 }}>
+                  <span className="sync-status-dot inactive" />
+                  <span>CLOUD SYNC (미연동)</span>
+                </div>
+
+                {/* 구글 로그인 연동 버튼 */}
+                <button 
+                  className="stellar-btn" 
+                  onClick={handleGoogleLogin}
+                  style={{ borderRadius: '9999px', padding: '8px 18px', fontSize: '13px' }}
+                >
+                  <LogIn size={14} /> 구글 로그인
                 </button>
-                <button className="stellar-btn-outline" onClick={startDemoSession}>
-                  체험 모드로 가동
+
+                {/* 체험 모드 버튼 */}
+                <button 
+                  className="stellar-btn-outline" 
+                  onClick={startDemoSession}
+                  style={{ borderRadius: '9999px', padding: '8px 18px', fontSize: '13px' }}
+                >
+                  체험 모드
                 </button>
               </div>
             )}
             
+            {/* 색상 대비 변경 토글 버튼 */}
             <button 
               className="stellar-btn-outline" 
               onClick={() => setTheme(prev => prev === 'midnight' ? 'parchment' : 'midnight')}
-              style={{ width: '38px', height: '38px', padding: 0 }}
+              style={{ width: '38px', height: '38px', padding: 0, borderRadius: '50%' }}
               title="색상 대비 변경"
             >
-              {theme === 'midnight' ? <Sun size={16} /> : <Moon size={16} />}
+              {theme === 'midnight' ? <Sun size={15} /> : <Moon size={15} />}
             </button>
           </div>
         </div>
@@ -1039,10 +1082,10 @@ export default function App() {
                 onClick={() => setKeeperProfile(prev => ({ ...prev, playbookId: p.id }))}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <h4 className="serif-font" style={{ fontSize: '16px', fontWeight: 'bold', color: 'var(--text-gold)' }}>{p.nameKo}</h4>
-                  {keeperProfile.playbookId === p.id && <CheckCircle size={16} style={{ color: 'var(--accent-cyan)' }} />}
+                  <h4 className="serif-font" style={{ fontSize: '19px', fontWeight: 'bold', color: 'var(--text-gold)' }}>{p.nameKo}</h4>
+                  {keeperProfile.playbookId === p.id && <CheckCircle size={18} style={{ color: 'var(--accent-cyan)' }} />}
                 </div>
-                <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                <p style={{ fontSize: '14px', color: 'var(--text-primary)', lineHeight: '1.6' }}>
                   {p.description.slice(0, 100)}...
                 </p>
               </div>
