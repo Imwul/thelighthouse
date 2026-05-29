@@ -1862,11 +1862,10 @@ export default function App() {
           ========================================== */}
       {activeTab === 'minigames' && (
         <section className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-          
           {/* 미니게임 1: 해변 수색 */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '30px' }}>
             <div className="helper-box">
-              <h4 className="helper-title"><Info size={16} /> 미니게임 1: 해변 수색</h4>
+              <h4 className="helper-title"><Info size={16} /> 미니게임 <span className="sans-font">1</span>: 해변 수색</h4>
               <p className="helper-content">
                 우주 끝자락에는 물자 배급이 극도로 희박합니다. 따라서 함선의 잔해, 고사한 별의 파편, 떠돌아다니는 기이한 식물 씨앗 등 
                 바위 해안선에 쓸려 올라오는 폐기물을 매일 수색해 모아 인벤토리에 쟁여 두어야 합니다. 
@@ -1964,7 +1963,7 @@ export default function App() {
           {/* 미니게임 2: 어둠 속의 빛 */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div className="helper-box cyan-accent">
-              <h4 className="helper-title" style={{ color: 'var(--accent-cyan)' }}><Info size={16} /> 미니게임 2: 어둠 속의 빛</h4>
+              <h4 className="helper-title" style={{ color: 'var(--accent-cyan)' }}><Info size={16} /> 미니게임 <span className="sans-font">2</span>: 어둠 속의 빛</h4>
               <p className="helper-content">
                 우주의 벼랑 너머 캄캄한 우주 심해 속, 보이지 않는 저 깊은 심연에서 아주 작은 등대 같은 붉은 불빛 하나가 지기님을 향해 깜빡입니다. 
                 그 불빛의 정체는 무엇일까요? 등대 탑 꼭대기에서 당신의 수신 랜턴 빔을 가볍게 조작하여 그 빛을 향해 <strong>간절한 질문</strong>을 던져봅니다. 
@@ -2073,7 +2072,7 @@ export default function App() {
           </div>
 
           <h2 className="serif-font" style={{ fontSize: '20px', color: 'var(--text-gold)', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '10px' }}>
-            🚨 우주 극단 대기후 6대 시즌 매뉴얼
+            🚨 우주 극단 대기후 <span className="sans-font">6</span>대 시즌 매뉴얼
           </h2>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>

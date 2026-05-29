@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
+/* Map numbers 0-9 to modern sans-serif globally to avoid serif numeric distortions */
+@font-face {
+  font-family: 'NumericSans';
+  src: local('Pretendard'), local('-apple-system'), local('sans-serif');
+  unicode-range: U+0030-0039;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,8 +33,8 @@
   --btn-bg: #dfb76c;
   --btn-text: #030712;
   --btn-hover: #c49a4f;
-  --font-serif: 'Cormorant Garamond', 'Eulyoo1945', serif;
-  --font-sans: 'Eulyoo1945', 'Pretendard', -apple-system, sans-serif;
+  --font-serif: 'NumericSans', 'Cormorant Garamond', 'Eulyoo1945', serif;
+  --font-sans: 'NumericSans', 'Eulyoo1945', 'Pretendard', -apple-system, sans-serif;
 }
 
 /* Light / Minimal Gold Alternate Theme */
