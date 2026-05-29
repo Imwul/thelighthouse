@@ -55,7 +55,7 @@ body.theme-light-parchment {
 html, body, p, span, input, textarea, select, button, label, select option {
   font-family: var(--font-sans) !important;
   letter-spacing: -0.05em !important;
-  font-size: 16.5px;
+  font-size: 15px;
 }
 
 body {
@@ -96,9 +96,9 @@ h1, h2, h3, h4, .serif-font {
 .helper-box {
   background: linear-gradient(135deg, rgba(223, 183, 108, 0.07) 0%, rgba(3, 7, 18, 0.4) 100%);
   border: 1px solid var(--border-color);
-  border-left: 5px solid var(--border-color);
+  border-left: 4px solid var(--border-color);
   border-radius: 8px;
-  padding: 20px 24px;
+  padding: 16px 20px;
   margin-bottom: 24px;
   box-shadow: 0 4px 12px var(--shadow-color);
   backdrop-filter: blur(8px);
@@ -107,14 +107,14 @@ h1, h2, h3, h4, .serif-font {
 .helper-box.cyan-accent {
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.07) 0%, rgba(3, 7, 18, 0.4) 100%);
   border-color: var(--accent-cyan);
-  border-left: 5px solid var(--accent-cyan);
+  border-left: 4px solid var(--accent-cyan);
 }
 
 .helper-title {
-  font-size: 21px !important;
+  font-size: 18px !important;
   font-weight: 700 !important;
   color: var(--text-gold);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -125,10 +125,10 @@ h1, h2, h3, h4, .serif-font {
 }
 
 .helper-content {
-  font-size: 17.5px !important;
+  font-size: 15px !important;
   color: var(--text-primary);
-  opacity: 1 !important; /* maximum readability */
-  line-height: 1.7 !important;
+  opacity: 0.95 !important;
+  line-height: 1.6 !important;
 }
 
 /* Glassmorphic panels */
@@ -168,10 +168,10 @@ h1, h2, h3, h4, .serif-font {
   background: transparent;
   border: 1px solid transparent;
   color: var(--text-secondary);
-  padding: 14px 22px;
+  padding: 10px 18px;
   border-radius: 6px;
-  font-weight: 700;
-  font-size: 18px !important;
+  font-weight: 600;
+  font-size: 15.5px !important;
   white-space: nowrap;
   cursor: pointer;
   display: inline-flex;
@@ -189,7 +189,7 @@ h1, h2, h3, h4, .serif-font {
   border-color: var(--border-color);
   color: var(--text-gold);
   background: var(--badge-bg);
-  box-shadow: 0 0 8px var(--border-glow);
+  box-shadow: 0 0 6px var(--border-glow);
 }
 
 /* Sleek inputs & textareas */
@@ -199,8 +199,8 @@ h1, h2, h3, h4, .serif-font {
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding: 14px 18px;
-  font-size: 17px !important;
+  padding: 10px 14px;
+  font-size: 15px !important;
   line-height: 1.6;
   outline: none;
   backdrop-filter: blur(4px);
@@ -224,8 +224,8 @@ textarea.stellar-input {
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding: 14px 18px;
-  font-size: 17px !important;
+  padding: 10px 14px;
+  font-size: 15px !important;
   outline: none;
   cursor: pointer;
   transition: border-color var(--transition-speed);
@@ -335,9 +335,10 @@ textarea.stellar-input {
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid rgba(223, 183, 108, 0.3);
   border-radius: 8px;
-  padding: 20px;
+  padding: 18px 20px;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-height: 180px; /* beautiful height structure */
 }
 
 .playbook-card:hover {
@@ -349,26 +350,26 @@ textarea.stellar-input {
 .playbook-card.selected {
   border-color: var(--accent-cyan);
   background: rgba(17, 24, 39, 0.9);
-  box-shadow: 0 0 16px var(--accent-cyan-glow);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
 }
 
 .playbook-card h4 {
-  font-size: 22px !important;
+  font-size: 19px !important;
   color: var(--text-gold) !important;
-  font-weight: 800 !important;
-  margin-bottom: 8px;
+  font-weight: 700 !important;
+  margin-bottom: 6px;
 }
 
 .playbook-card p {
-  font-size: 17px !important;
-  color: var(--text-primary) !important; /* brighter starlight cream */
-  line-height: 1.65 !important;
-  opacity: 1 !important;
+  font-size: 14.5px !important;
+  color: var(--text-primary) !important;
+  line-height: 1.6 !important;
+  opacity: 0.95 !important;
 }
 
 body.theme-light-parchment .playbook-card {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(139, 107, 63, 0.35);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(139, 107, 63, 0.3);
 }
 
 body.theme-light-parchment .playbook-card:hover {
@@ -376,8 +377,8 @@ body.theme-light-parchment .playbook-card:hover {
 }
 
 body.theme-light-parchment .playbook-card.selected {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 0 16px var(--accent-cyan-glow);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
 }
 
 /* Character Customizer Options list */
@@ -392,10 +393,10 @@ body.theme-light-parchment .playbook-card.selected {
   background: rgba(3, 7, 18, 0.4);
   border: 1px solid rgba(223, 183, 108, 0.2);
   border-radius: 6px;
-  padding: 14px 18px;
+  padding: 10px 14px;
   text-align: left;
   color: var(--text-primary);
-  font-size: 17px !important;
+  font-size: 14.5px !important;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -417,11 +418,11 @@ body.theme-light-parchment .playbook-card.selected {
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  padding: 14px 18px;
+  padding: 10px 14px;
   border-radius: 6px;
   border: 1px solid rgba(223, 183, 108, 0.2);
   background: rgba(3, 7, 18, 0.4);
-  font-size: 17px !important;
+  font-size: 14.5px !important;
   transition: all 0.2s ease;
 }
 
@@ -1000,46 +1001,46 @@ body.theme-light-parchment .sync-btn-logout:hover {
 
 /* Global text size and visibility boost */
 label {
-  font-size: 17px !important;
+  font-size: 14.5px !important;
   font-weight: 700 !important;
   color: var(--text-gold) !important;
   display: inline-block !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 6px !important;
 }
 
 .customizer-options-group div, 
 .customizer-options-group span, 
 .customizer-options-group label {
-  font-size: 16.5px !important;
+  font-size: 14px !important;
 }
 
 /* Make paragraph descriptions inside panels much more visible */
 .glass-panel p {
-  font-size: 17px !important;
-  line-height: 1.65 !important;
+  font-size: 15px !important;
+  line-height: 1.60 !important;
 }
 
 /* Settings and control descriptions */
 .settings-modal strong {
-  font-size: 16px !important;
+  font-size: 14.5px !important;
 }
 .settings-modal span {
-  font-size: 14px !important;
+  font-size: 13px !important;
 }
 
 /* Badge tags */
 .stellar-badge {
-  font-size: 13.5px !important;
-  padding: 6px 12px !important;
+  font-size: 12.5px !important;
+  padding: 4px 8px !important;
 }
 
 /* Buttons inside shift journal phase panels */
 .glass-panel button {
-  font-size: 15px !important;
+  font-size: 14px !important;
 }
 
 /* Character creator subtitle styling */
 .playbook-grid + div label {
-  font-size: 17px !important;
+  font-size: 14.5px !important;
   color: var(--text-gold) !important;
 }

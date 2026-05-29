@@ -1085,8 +1085,8 @@ export default function App() {
                   <h4 className="serif-font" style={{ fontSize: '19px', fontWeight: 'bold', color: 'var(--text-gold)' }}>{p.nameKo}</h4>
                   {keeperProfile.playbookId === p.id && <CheckCircle size={18} style={{ color: 'var(--accent-cyan)' }} />}
                 </div>
-                <p style={{ fontSize: '14px', color: 'var(--text-primary)', lineHeight: '1.6' }}>
-                  {p.description.slice(0, 100)}...
+                <p style={{ fontSize: '14.5px', color: 'var(--text-primary)', lineHeight: '1.6' }}>
+                  {p.description}
                 </p>
               </div>
             ))}
