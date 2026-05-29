@@ -1067,7 +1067,7 @@ export default function App() {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '10px' }}>
             <h2 className="serif-font" style={{ fontSize: '20px', color: 'var(--text-gold)' }}>
-              <span className="sans-font">1.</span> 등대지기 플레이북 자아 설정
+              1. 등대지기 플레이북 자아 설정
             </h2>
             <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
               등대지기 고유대장 번호: <span className="stellar-badge">No. {keeperProfile.keeperNo}</span>
@@ -2192,7 +2192,7 @@ export default function App() {
                       <strong style={{ color: 'var(--text-gold)', fontSize: '13px', display: 'block', marginBottom: '6px' }}>
                         {log.keeper}
                       </strong>
-                      <p style={{ fontSize: '12px', lineHeight: '1.7', color: 'var(--text-primary)', whiteSpace: 'pre-wrap', fontFamily: 'Eulyoo1945', letterSpacing: '-0.03em' }}>
+                      <p style={{ fontSize: '12px', lineHeight: '1.7', color: 'var(--text-primary)', whiteSpace: 'pre-wrap', letterSpacing: '-0.03em' }}>
                         {log.content}
                       </p>
                     </div>
