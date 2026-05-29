@@ -172,7 +172,7 @@ h1, h2, h3, h4, .serif-font {
   border-radius: 6px;
   font-weight: 700;
   font-size: 16.5px !important;
-  white-space: nowrap;
+  white-space: normal;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -493,7 +493,7 @@ body.theme-light-parchment .playbook-card.selected {
   backface-visibility: hidden;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  overflow: hidden;
+  overflow: hidden; /* Required for 3D card flip border-radius clipping */
 }
 
 .stellar-card-face.cyan-border {
@@ -632,7 +632,7 @@ body.theme-light-parchment .playbook-card.selected {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .lighthouse-tower-art {
@@ -693,7 +693,7 @@ body.theme-light-parchment .playbook-card.selected {
   font-family: var(--font-sans) !important;
   position: relative;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .archive-sheet-header {
@@ -812,7 +812,7 @@ body.theme-light-parchment .playbook-card.selected {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   box-shadow: 0 16px 40px rgba(0,0,0,0.8);
-  overflow: hidden;
+  overflow: visible; /* Changed to visible to prevent text clipping inside modal */
 }
 
 /* Flex wrap cards on mobile */

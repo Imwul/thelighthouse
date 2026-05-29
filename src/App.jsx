@@ -700,7 +700,7 @@ export default function App() {
     const newJournal = {
       id: Date.now().toString(),
       date: shiftState.date || new Date().toLocaleDateString(),
-      time: shiftState.time || new Date().toLocaleTimeString().slice(0, 5),
+      time: shiftState.time || new Date().toLocaleTimeString(),
       keeperNo: keeperProfile.keeperNo,
       keeperName: keeperProfile.name || "무명의 등대지기",
       playbookName: activePlaybook.nameKo,
@@ -1276,7 +1276,7 @@ export default function App() {
       {activeTab === 'shift' && (
         <section className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '12px', overflowX: 'auto', gap: '8px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
             <span className="serif-font" style={{ fontSize: '18px', color: shiftState.phase === 1 ? 'var(--text-gold)' : 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
               {shiftState.phase > 1 ? "✓" : "1."} 시작 및 기후 결정
             </span>
@@ -2037,7 +2037,7 @@ export default function App() {
                   </button>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '200px', overflowY: 'auto', background: 'rgba(3, 7, 18, 0.3)', padding: '10px', borderRadius: '6px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '320px', overflowY: 'auto', background: 'rgba(3, 7, 18, 0.3)', padding: '10px', borderRadius: '6px' }}>
                   {lightConversations.map((conv) => (
                     <div key={conv.id} style={{ fontSize: '12px', borderBottom: '1px solid rgba(223, 183, 108, 0.1)', paddingBottom: '6px' }}>
                       <span style={{ color: 'var(--text-secondary)' }}>[{conv.timestamp}]</span>
