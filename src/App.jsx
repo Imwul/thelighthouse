@@ -1163,7 +1163,7 @@ export default function App() {
           justifyContent: 'space-between', 
           alignItems: 'center', 
           padding: '12px 16px', 
-          background: 'rgba(3, 7, 18, 0.4)', 
+          background: 'var(--card-bg-dark)', 
           border: '1px solid rgba(223, 183, 108, 0.2)', 
           borderRadius: '8px',
           flexWrap: 'wrap',
