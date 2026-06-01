@@ -1256,7 +1256,7 @@ export default function App() {
             ))}
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', background: 'rgba(3, 7, 18, 0.3)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(223, 183, 108, 0.1)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', background: 'var(--card-bg-dark)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(223, 183, 108, 0.1)' }}>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <div>
