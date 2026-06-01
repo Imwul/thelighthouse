@@ -9,46 +9,52 @@
 
 :root {
   --transition-speed: 0.3s;
-  --bg-color: #0a0e17; /* Softer cosmic void space navy */
-  --panel-bg: rgba(20, 26, 40, 0.75); /* Softer glassmorphic navy gray */
-  --panel-bg-alt: rgba(28, 36, 56, 0.85);
-  --border-color: #dfb76c; /* Warm stellar antique gold */
-  --border-glow: rgba(223, 183, 108, 0.3);
-  --text-primary: #f3ebe1; /* Creamy starlight cream */
-  --text-secondary: #9ca3af; /* Space dust gray */
-  --text-gold: #dfb76c;
-  --accent-cyan: #38bdf8; /* Cosmic sky blue */
-  --accent-cyan-glow: rgba(56, 189, 248, 0.3);
-  --input-bg: rgba(10, 14, 23, 0.6);
-  --shadow-color: rgba(0, 0, 0, 0.7);
-  --accent-color: #dfb76c;
-  --badge-bg: rgba(223, 183, 108, 0.1);
-  --btn-bg: #dfb76c;
-  --btn-text: #030712;
-  --btn-hover: #c49a4f;
+  --bg-color: #07080d; /* Deep indigo-black void */
+  --panel-bg: rgba(14, 17, 28, 0.82); /* Muted navy glass */
+  --panel-bg-alt: rgba(20, 25, 40, 0.88);
+  --border-color: #b8954a; /* Matte antique gold */
+  --border-glow: rgba(184, 149, 74, 0.25);
+  --text-primary: #ddd6cb; /* Soft warm ivory */
+  --text-secondary: #7e8694; /* Cool slate */
+  --text-gold: #c9a55a; /* Refined amber gold */
+  --accent-cyan: #5cc8f0; /* Soft aqua */
+  --accent-cyan-glow: rgba(92, 200, 240, 0.2);
+  --input-bg: rgba(10, 12, 20, 0.65);
+  --shadow-color: rgba(0, 0, 0, 0.75);
+  --accent-color: #b8954a;
+  --badge-bg: rgba(184, 149, 74, 0.1);
+  --btn-bg: #b8954a;
+  --btn-text: #0a0b10;
+  --btn-hover: #9a7d3e;
+  --subtle-bg: rgba(14, 17, 28, 0.5); /* For inline style replacement */
+  --card-bg-dark: rgba(10, 12, 20, 0.55);
+  --section-border: rgba(184, 149, 74, 0.18);
   --font-serif: 'Pretendard', -apple-system, sans-serif;
   --font-sans: 'Pretendard', -apple-system, sans-serif;
 }
 
-/* Light / Minimal Gold Alternate Theme */
+/* Light / Warm Parchment Theme */
 body.theme-light-parchment {
-  --bg-color: #f7f4ed; /* Soft warm parchment cream */
-  --panel-bg: rgba(255, 255, 255, 0.8);
-  --panel-bg-alt: rgba(243, 239, 229, 0.9);
-  --border-color: #8b6b3f; /* Deep copper gold */
-  --border-glow: rgba(139, 107, 63, 0.2);
-  --text-primary: #1f1a14;
-  --text-secondary: #6b6255;
-  --text-gold: #8b6b3f;
-  --accent-cyan: #0284c7;
-  --accent-cyan-glow: rgba(2, 132, 199, 0.2);
-  --input-bg: rgba(255, 255, 255, 0.9);
-  --shadow-color: rgba(139, 107, 63, 0.15);
-  --accent-color: #8b6b3f;
-  --badge-bg: rgba(139, 107, 63, 0.08);
-  --btn-bg: #8b6b3f;
-  --btn-text: #ffffff;
-  --btn-hover: #6e522f;
+  --bg-color: #f5f1e8; /* Warm antique parchment */
+  --panel-bg: rgba(255, 252, 245, 0.92);
+  --panel-bg-alt: rgba(240, 234, 220, 0.88);
+  --border-color: #8c7040; /* Bronze amber */
+  --border-glow: rgba(140, 112, 64, 0.18);
+  --text-primary: #2c2418; /* Deep sepia */
+  --text-secondary: #6d6050; /* Warm stone */
+  --text-gold: #7a5c1e; /* Deep amber */
+  --accent-cyan: #1a7ab5; /* Calm teal blue */
+  --accent-cyan-glow: rgba(26, 122, 181, 0.15);
+  --input-bg: rgba(255, 252, 245, 0.95);
+  --shadow-color: rgba(100, 80, 50, 0.12);
+  --accent-color: #8c7040;
+  --badge-bg: rgba(140, 112, 64, 0.08);
+  --btn-bg: #6d5525; /* Rich earth brown */
+  --btn-text: #fffcf5;
+  --btn-hover: #5a4520;
+  --subtle-bg: rgba(240, 234, 220, 0.6);
+  --card-bg-dark: rgba(235, 228, 212, 0.7);
+  --section-border: rgba(140, 112, 64, 0.2);
 }
 
 /* Global Font Override & Letter Spacing (Mandatory -5% rule) & Font Size Boost */
@@ -61,12 +67,16 @@ html, body, p, span, input, textarea, select, button, label, select option {
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
-  background-image: radial-gradient(circle at 50% 50%, rgba(28, 36, 56, 0.25) 0%, rgba(10, 14, 23, 0.15) 100%);
+  background-image: radial-gradient(circle at 50% 50%, rgba(20, 25, 42, 0.2) 0%, rgba(7, 8, 13, 0.1) 100%);
   background-attachment: fixed;
   transition: background-color var(--transition-speed), color var(--transition-speed);
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+body.theme-light-parchment {
+  background-image: radial-gradient(circle at 50% 50%, rgba(240, 234, 220, 0.3) 0%, rgba(245, 241, 232, 0.1) 100%);
 }
 
 /* Scrollbar Styling */
@@ -94,7 +104,7 @@ h1, h2, h3, h4, .serif-font {
 
 /* Guided Helper Box for Beginners */
 .helper-box {
-  background: linear-gradient(135deg, rgba(223, 183, 108, 0.07) 0%, rgba(3, 7, 18, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(184, 149, 74, 0.06) 0%, var(--card-bg-dark) 100%);
   border: 1px solid var(--border-color);
   border-left: 4px solid var(--border-color);
   border-radius: 8px;
@@ -104,10 +114,18 @@ h1, h2, h3, h4, .serif-font {
   backdrop-filter: blur(8px);
 }
 
+body.theme-light-parchment .helper-box {
+  background: linear-gradient(135deg, rgba(140, 112, 64, 0.06) 0%, rgba(255, 252, 245, 0.8) 100%);
+}
+
 .helper-box.cyan-accent {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.07) 0%, rgba(3, 7, 18, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(92, 200, 240, 0.06) 0%, var(--card-bg-dark) 100%);
   border-color: var(--accent-cyan);
   border-left: 4px solid var(--accent-cyan);
+}
+
+body.theme-light-parchment .helper-box.cyan-accent {
+  background: linear-gradient(135deg, rgba(26, 122, 181, 0.06) 0%, rgba(255, 252, 245, 0.8) 100%);
 }
 
 .helper-title {
@@ -332,24 +350,24 @@ textarea.stellar-input {
 }
 
 .playbook-card {
-  background: rgba(17, 24, 39, 0.5);
-  border: 1px solid rgba(223, 183, 108, 0.3);
+  background: var(--card-bg-dark);
+  border: 1px solid var(--section-border);
   border-radius: 8px;
   padding: 18px 20px;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-height: 180px; /* beautiful height structure */
+  min-height: 180px;
 }
 
 .playbook-card:hover {
   border-color: var(--border-color);
-  background: rgba(17, 24, 39, 0.8);
+  background: var(--panel-bg-alt);
   transform: translateY(-2px);
 }
 
 .playbook-card.selected {
   border-color: var(--accent-cyan);
-  background: rgba(17, 24, 39, 0.9);
+  background: var(--panel-bg-alt);
   box-shadow: 0 0 12px var(--accent-cyan-glow);
 }
 
@@ -368,17 +386,19 @@ textarea.stellar-input {
 }
 
 body.theme-light-parchment .playbook-card {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(139, 107, 63, 0.3);
+  background: rgba(255, 252, 245, 0.7);
+  border: 1px solid rgba(140, 112, 64, 0.25);
 }
 
 body.theme-light-parchment .playbook-card:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 252, 245, 0.95);
+  border-color: var(--border-color);
 }
 
 body.theme-light-parchment .playbook-card.selected {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 252, 245, 0.98);
   box-shadow: 0 0 12px var(--accent-cyan-glow);
+  border-color: var(--accent-cyan);
 }
 
 /* Character Customizer Options list */
@@ -390,8 +410,8 @@ body.theme-light-parchment .playbook-card.selected {
 }
 
 .customizer-option-btn {
-  background: rgba(3, 7, 18, 0.4);
-  border: 1px solid rgba(223, 183, 108, 0.2);
+  background: var(--card-bg-dark);
+  border: 1px solid var(--section-border);
   border-radius: 6px;
   padding: 12px 16px;
   text-align: left;
@@ -403,13 +423,30 @@ body.theme-light-parchment .playbook-card.selected {
 
 .customizer-option-btn:hover {
   border-color: var(--border-color);
-  background: rgba(3, 7, 18, 0.7);
+  background: var(--panel-bg-alt);
 }
 
 .customizer-option-btn.selected {
   border-color: var(--accent-cyan);
   color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.05);
+  background: rgba(92, 200, 240, 0.06);
+}
+
+body.theme-light-parchment .customizer-option-btn {
+  background: rgba(255, 252, 245, 0.8);
+  border-color: rgba(140, 112, 64, 0.2);
+  color: var(--text-primary);
+}
+
+body.theme-light-parchment .customizer-option-btn:hover {
+  background: rgba(255, 252, 245, 0.95);
+  border-color: var(--border-color);
+}
+
+body.theme-light-parchment .customizer-option-btn.selected {
+  background: rgba(26, 122, 181, 0.06);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
 }
 
 /* Radio checkable box */
@@ -420,8 +457,8 @@ body.theme-light-parchment .playbook-card.selected {
   cursor: pointer;
   padding: 12px 16px;
   border-radius: 6px;
-  border: 1px solid rgba(223, 183, 108, 0.2);
-  background: rgba(3, 7, 18, 0.4);
+  border: 1px solid var(--section-border);
+  background: var(--card-bg-dark);
   font-size: 16px !important;
   transition: all 0.2s ease;
 }
@@ -433,7 +470,23 @@ body.theme-light-parchment .playbook-card.selected {
 .stellar-radio-box.selected {
   border-color: var(--accent-cyan);
   color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.05);
+  background: rgba(92, 200, 240, 0.06);
+}
+
+body.theme-light-parchment .stellar-radio-box {
+  background: rgba(255, 252, 245, 0.8);
+  border-color: rgba(140, 112, 64, 0.2);
+  color: var(--text-primary);
+}
+
+body.theme-light-parchment .stellar-radio-box:hover {
+  border-color: var(--border-color);
+}
+
+body.theme-light-parchment .stellar-radio-box.selected {
+  background: rgba(26, 122, 181, 0.06);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
 }
 
 .radio-dot {
@@ -501,8 +554,8 @@ body.theme-light-parchment .playbook-card.selected {
 }
 
 .stellar-card-back {
-  background: #030712;
-  background-image: radial-gradient(circle at center, #111827 0%, #030712 100%);
+  background: #050710;
+  background-image: radial-gradient(circle at center, #0e1220 0%, #050710 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -514,7 +567,7 @@ body.theme-light-parchment .playbook-card.selected {
 }
 
 .stellar-card-front {
-  background: #0b0f19;
+  background: #080c16;
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
@@ -522,6 +575,17 @@ body.theme-light-parchment .playbook-card.selected {
   justify-content: center;
   padding: 12px;
   text-align: center;
+  color: var(--text-primary);
+}
+
+body.theme-light-parchment .stellar-card-back {
+  background: #e8e0d0;
+  background-image: radial-gradient(circle at center, #f0e8d8 0%, #e0d8c8 100%);
+  color: var(--text-secondary);
+}
+
+body.theme-light-parchment .stellar-card-front {
+  background: #f0e8d8;
   color: var(--text-primary);
 }
 
@@ -595,15 +659,27 @@ body.theme-light-parchment .playbook-card.selected {
 }
 
 .stellar-coin-face.heads-face {
-  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  background: radial-gradient(circle at center, #161c2e 0%, #0c1020 100%);
   color: var(--text-gold);
 }
 
 .stellar-coin-face.tails-face {
-  background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+  background: radial-gradient(circle at center, #0e1220 0%, #050710 100%);
   color: var(--accent-cyan);
   border-color: var(--accent-cyan);
   transform: rotateY(180deg);
+}
+
+body.theme-light-parchment .stellar-coin-face.heads-face {
+  background: radial-gradient(circle at center, #e8e0d0 0%, #ddd5c5 100%);
+  color: var(--text-gold);
+  border-color: var(--border-color);
+}
+
+body.theme-light-parchment .stellar-coin-face.tails-face {
+  background: radial-gradient(circle at center, #ddd5c5 0%, #d0c8b8 100%);
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
 }
 
 @keyframes coinToss {
@@ -685,21 +761,28 @@ body.theme-light-parchment .playbook-card.selected {
 
 /* Archive Sheet styling matching PDF */
 .archive-sheet-card {
-  background: #fdfcf9;
-  color: #1a1612;
-  border: 1px solid #7d6b58;
-  border-radius: 0;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  background: var(--panel-bg-alt);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px var(--shadow-color);
   font-family: var(--font-sans) !important;
   position: relative;
   padding: 0;
-  overflow: visible;
+  overflow: hidden;
+  transition: all var(--transition-speed);
+}
+
+.archive-sheet-card.ending-sheet {
+  border: 3px solid #b8954a !important;
+  box-shadow: 0 8px 32px rgba(184, 149, 74, 0.45) !important;
+  position: relative;
 }
 
 .archive-sheet-header {
-  border-bottom: 2px solid #7d6b58;
+  border-bottom: 2px solid var(--border-color);
   padding: 16px 20px;
-  background: #f5f2e9;
+  background: var(--subtle-bg);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -707,7 +790,7 @@ body.theme-light-parchment .playbook-card.selected {
 
 .archive-sheet-row {
   display: flex;
-  border-bottom: 1px solid #bcaf9c;
+  border-bottom: 1px solid var(--section-border);
 }
 
 .archive-sheet-cell {
@@ -719,25 +802,25 @@ body.theme-light-parchment .playbook-card.selected {
 .archive-sheet-cell.label {
   width: 140px;
   font-weight: 700;
-  background: #f7f6f1;
-  border-right: 1px solid #bcaf9c;
-  color: #5a4b3c;
+  background: var(--card-bg-dark);
+  border-right: 1px solid var(--section-border);
+  color: var(--text-gold);
 }
 
 .archive-sheet-cell.value {
   flex: 1;
-  color: #1a1612;
+  color: var(--text-primary);
 }
 
 .archive-sheet-remarks {
   padding: 24px;
-  background: #fdfcf9;
+  background: var(--panel-bg-alt);
   min-height: 180px;
-  font-size: 14px;
+  font-size: 14.5px;
   line-height: 1.8;
   white-space: pre-wrap;
-  color: #2b251e;
-  font-family: 'Eulyoo1945', serif !important;
+  color: var(--text-primary);
+  font-family: var(--font-sans) !important;
 }
 
 /* Side Drawer Overlay for Rules */

@@ -122,6 +122,11 @@ export default function App() {
   const [isShufflingCards, setIsShufflingCards] = useState(false);
   const [shuffledCount, setShuffledCount] = useState(0);
 
+  // 등대를 영구히 떠나기 엔딩 관련 상태
+  const [isLeavingLighthouse, setIsLeavingLighthouse] = useState(false);
+  const [showEndingModal, setShowEndingModal] = useState(false);
+  const [lastEndingJournal, setLastEndingJournal] = useState(null);
+
   // 미니게임: 해변 수색 인벤토리 및 상태
   const [beachHour, setBeachHour] = useState('4');
   const [beachcombedItems, setBeachcombedItems] = useState([]);
@@ -566,6 +571,109 @@ export default function App() {
     }, 90);
   };
 
+  // 밤의 분위기 판정표 (룰북 p.41 권장 업무 추천)
+  const getWeatherRecommendation = (moodId) => {
+    switch (moodId) {
+      case 'tired': // 몰아치는 우주 풍랑 (사나움 / 혹한)
+        return {
+          moodDesc: "사납고 혹독함 (Wild/Cold)",
+          recType: 'maintenance',
+          recTypeKo: "도구 및 등대 유지보수",
+          reason: "우주 풍랑과 혹한 속에서는 등대의 외벽 석조와 윤활유 공급 장치가 쉽게 결빙되거나 파손될 우려가 큽니다."
+        };
+      case 'pained': // 노래하는 태양풍 (기괴함)
+        return {
+          moodDesc: "기괴하고 쓸쓸함 (Strange)",
+          recType: 'maintenance',
+          recTypeKo: "도구 및 등대 유지보수",
+          reason: "노래하듯 흐느끼는 사나운 전하풍으로 인해 기계 내부 태엽과 배관 파이프의 느슨해짐이 발생하기 쉽습니다."
+        };
+      case 'happy': // 성간 우주설 (추움)
+        return {
+          moodDesc: "조용하고 차가움 (Cold)",
+          recType: 'maintenance',
+          recTypeKo: "도구 및 등대 유지보수",
+          reason: "등대 바닥과 외부 난간에 성간 우주설 별가루가 소리 없이 쌓이므로, 결빙을 막기 위한 보살핌과 정리가 시급합니다."
+        };
+      case 'excited': // 성간 대류 온난 (평온함)
+        return {
+          moodDesc: "평온하고 온화함 (Calm)",
+          recType: 'observation',
+          recTypeKo: "경외로운 우주 관측",
+          reason: "대기가 무척 온화하고 오색찬란한 은하계 흐름이 맑게 드러나 우주 생명체나 함선들이 활기차게 노니는 최고의 상태입니다."
+        };
+      case 'angry': // 불타는 극광의 춤 (숨막히게 더움)
+        return {
+          moodDesc: "답답하고 이글거림 (Stifling Hot)",
+          recType: 'maintenance',
+          recTypeKo: "도구 및 등대 유지보수",
+          reason: "전하를 가득 띤 붉은 극광과 후텁지근한 열기로 인해 등대의 안테나 오작동 및 기어 윤활유 과열 팽창을 긴급히 돌봐야 합니다."
+        };
+      case 'relaxed': // 어둠의 우주우 (불확실함)
+        return {
+          moodDesc: "불확실하고 한 치 앞을 알 수 없음 (Uncertain)",
+          recType: 'happening',
+          recTypeKo: "불시의 우주 사건",
+          reason: "짙은 성간 응축수 안개와 제한된 시야 탓에 예상치 못한 차원적 이상 변이나 불시의 이변이 일어나기 쉽습니다."
+        };
+      case 'sad': // 유성우의 공습 (시끄럽고 혼돈됨)
+        return {
+          moodDesc: "시끄럽고 혼란스러움 (Loud/Chaotic)",
+          recType: 'happening',
+          recTypeKo: "불시의 우주 사건",
+          reason: "하늘을 가로지르는 수천 개의 불타는 유성 충격음과 파편 공습 때문에 등대 안팎에 긴박하고 돌발적인 대소동이 일어납니다."
+        };
+      case 'anxious': // 심연의 기괴한 정적 (불안함 / 고요함)
+        return {
+          moodDesc: "불안하고 고요함 (Unsettling/Quiet)",
+          recType: 'observation',
+          recTypeKo: "경외로운 우주 관측 또는 불시의 우주 사건",
+          reason: "미동조차 하지 않는 칠흑 같은 적막은 등대지기에게 극도의 불안감을 조장하며, 깊은 공허 속 기묘한 외계 존재의 관측이나 고요한 정적의 돌발적인 깨짐을 예견합니다."
+        };
+      default:
+        return null;
+    }
+  };
+
+  // 관측 대상(categoryId)과 거리(suit)에 따른 룰북 p.44 관측 서사 프롬프트
+  const getObservationPrompt = (rolled, suit) => {
+    if (rolled === 1) {
+      if (suit === '스페이드') return "아득히 먼 심연 속에서 어른거리는 미세한 점멸은 그들의 거대한 우주 유영 단체 행동인가요, 아니면 고독한 어미 물고기의 헤엄인가요? 그들의 아주 작고 쓸쓸한 반짝임에 지기는 어떤 슬픈 동질감을 느끼나요?";
+      if (suit === '클럽') return "랜턴 광선 경계선을 기웃거리는 그 존재는 등대의 강한 빛을 두려워하고 있나요, 아니면 불빛의 미세한 자성을 탐닉하고 있나요? 그들이 불빛 바로 바깥에서 뿜어내는 가스나 에테르 꼬리의 냄새가 어렴풋이 여기까지 전해지나요?";
+      if (suit === '하트') return "손을 뻗으면 닿을 듯 난간 너머로 다가온 그 거대한 성간 고래/생명체와 눈이 마주친 순간, 지기는 그들의 차가운 영혼에서 어떤 오래된 우주적 지혜를 엿보았나요? 손가락 끝에 닿은 그들의 신비로운 물리적 감촉은 어땠나요?";
+      return "머리 위 궤도를 온통 뒤덮으며 웅장한 비행을 하는 그 눈부신 군무는 이곳 등대 바위 섬 전체를 집어삼킬 듯한 압도감을 줍니다. 그들의 거대한 유영이 내는 소리와 주파수는 지기님의 온 심장과 등대실 유리를 어떻게 뒤흔들었나요?";
+    }
+    if (rolled === 2) {
+      if (suit === '스페이드') return "지평선 끝을 위태롭게 가로지르는 저 소형 여행선은 목적지를 잃고 표류하는 걸까요, 아니면 성간 국경 정찰선일까요? 그 먼 곳의 우주 창문을 통해 그들도 이곳 등대의 등대 빔을 가만히 응시하고 있을까요?";
+      if (suit === '클럽') return "랜턴 불빛 궤적을 은밀히 타고 흐르는 기계선은 제국 군함의 순찰선인가요, 아니면 불법 상선의 은밀한 잠행인가요? 그들이 남긴 연료 연소 가스의 탁한 궤적이 차가운 등대 기류와 뒤섞이며 어떤 이질적인 광경을 자아내나요?";
+      if (suit === '하트') return "난간 코앞까지 극도로 밀착해 다가와 등대의 빛 인도를 구하는 저 소형 우주 여행선의 녹슨 외벽과 리벳들이 선명히 보입니다. 헬멧을 쓴 탑승자가 차창 너머로 당신에게 보낸 간절한 수신호나 표정은 어떠했나요?";
+      return "하늘 전체를 가득 메우며 웅장한 위압감을 뽐내는 거대 제국 함선이 머리 위 초근접 궤도를 통과합니다. 그들이 내뿜는 차원 이동 엔진의 묵직한 중력적 왜곡 현상과 굉음은 지기님의 마음에 어떤 거대한 소외감이나 전쟁의 공포를 불러일으켰나요?";
+    }
+    if (rolled === 3) {
+      if (suit === '스페이드') return "저 멀리 은하 경계에서 아련히 피어오르는 초신성의 미세한 소멸 섬광은 영겁의 시간 전의 유산일 것입니다. 지기님의 마음속에 남아있는, 이제는 소멸하여 이름만 남은 소중한 기억이나 사람의 이름이 혹시 저 불꽃과 겹쳐 보이나요?";
+      if (suit === '클럽') return "랜턴 빔 바로 바깥에서 일렁이며 하늘을 장엄하게 채우는 유성우 폭포나 오로라 파동은 밤의 어둠을 보라색과 비취색으로 찬란하게 밝힙니다. 이 고독한 우주 끝자락에서 홀로 바라보기에는 너무나도 과분하고 쓸쓸한 이 장관을, 지기는 누구와 나누고 싶어지나요?";
+      if (suit === '하트') return "등대 탑 난간 위로 손바닥 크기의 미세한 유성 가루 입자들과 성간 이온 스파크가 직접 날아와 타닥타닥 소리를 내며 사그라집니다. 지기님의 옷자락과 세마포 장갑 위에 묻은 신비롭고 반짝이는 우주의 불씨는 어떤 황홀하거나 쓰라린 열기를 품고 있었나요?";
+      return "머리 위 정수리를 가득 덮으며 웅장한 파도를 그리는 거대 성간 가스 오로라 태풍이 등대 탑 전체를 위압적으로 뒤덮습니다. 하늘을 통째로 이글거리게 만드는 불타는 극광들의 소용돌이는 지기님이 가진 모든 인간적 고민을 얼마나 덧없고 작게 만들어 버리나요?";
+    }
+    if (rolled === 4) {
+      if (suit === '스페이드') return "저 멀리 칠흑 같은 공허 속에 영겁처럼 박혀 고요히 흔들리는 미세한 인공 구조물은 무엇일까요? 과거 고대 지기들이 남긴 버려진 대피 초소일까요, 아니면 주인 잃은 구형 관측 포드일까요? 그것이 던지는 깊은 적막감은 어떠한가요?";
+      if (suit === '클럽') return "랜턴 빔이 매초 회전할 때마다, 바로 바깥에서 잠시 모습을 드러냈다 사라지는 차갑고 거대한 강철 무전 안테나/부유 도시는 어두운 철판들 사이로 희미한 비상용 경고등을 깜빡이고 있습니다. 저 안에서 당신의 등대 빛을 이정표 삼아 버티고 있을 마지막 생존자는 누구일까요?";
+      if (suit === '하트') return "등대 바위 섬 코앞까지 떠밀려 와 좌초되듯 흔들리는 버려진 탈출용 캡슐이나 고대 기하학적 유물이 난간 너머로 보입니다. 그 녹슨 문양과 내부를 들여다볼 수 있는 작은 창문에 비친 것은 어떤 가슴 시린 우주의 역사였나요?";
+      return "머리 위 하늘을 가득 덮으며 웅장하게 위압감을 뽐내는 거대 우주 정거장 무역항의 하부 선체가 초근접 궤도에 걸쳐져 지나갑니다. 정거장에서 뿜어져 나오는 인공적인 배출열과 둔탁한 터빈 진동 소음은 지기의 마음속 외로움을 어떻게 자극하나요?";
+    }
+    if (rolled === 5) {
+      if (suit === '스페이드') return "심연의 틈새에서 일렁이는, 공식 도감에 전혀 존재하지 않는 정체불명의 에테르적 점멸 신호는 아득하게 멀어 조준경으로도 형체를 식별할 수 없습니다. 그것이 지기님에게 감응하여 깜빡이는 듯한 지적인 착각을 느끼며 당신은 어떤 묘한 경외심과 두려움을 느꼈나요?";
+      if (suit === '클럽') return "랜턴 불빛 바로 바깥에서 은밀하게 형태를 왜곡하며 일렁이는 미확인 스텔스 유기체는 등대의 인공적인 에너지 흐름을 어떻게 흡수하거나 반응하고 있나요? 생전 처음 보는 물리 법칙으로 일렁이는 그 일렁임에서 어떤 낯선 온기나 서늘함이 풍겨옵니까?";
+      if (suit === '하트') return "등대 난간 바로 옆까지 극도로 가까이 다가와, 얇은 유리창 하나만을 사이에 두고 지기님을 빤히 응시하는 무정형의 반투명 외계 생명체를 포착했습니다. 그 촉수나 빛 주파수가 유리창에 부딪히며 내는 노랫소리와, 그의 눈동자에서 느껴진 호기심은 어떤 의미였을까요?";
+      return "하늘 전체를 뒤덮으며 소리 없이 위압적으로 공전하는 정체불명의 거대 미확인 비행물체가 등대 바위 섬의 중력을 미세하게 비틀어 놓습니다. 등대의 모든 나침반과 기어들이 제멋대로 회전하는 동안, 지기가 마주한 이 초자연적인 압도감에 대해 어떤 일지를 기록하겠습니까?";
+    }
+    // rolled === 6
+    if (suit === '스페이드') return "우주 망원경 렌즈 한구석에 간신히 걸린, 두꺼운 우주복을 입은 채 기어오르는 듯 유영하는 아득히 먼 성간 방랑자는 홀로 어디로 가고 있는 것일까요? 지기님은 등대 신호기를 깜빡여 그 고독한 유랑을 격려하거나 위로해 주었나요?";
+    if (suit === '클럽') return "랜턴 빔 바로 바깥에서 와이어 생명선도 없이 홀로 보조 중력 장치에 의지해 떠다니는 성간 여행자의 우주복 실루엣이 보입니다. 그가 등대의 거대 렌즈 광선을 바라보며 양손을 가볍게 흔들 때, 지기님의 마음에 떠오른 말할 수 없는 그리움은 무엇이었나요?";
+    if (suit === '하트') return "등대실 외부 관측 데크 난간을 조심스레 붙잡고 지쳐서 헐떡이며 찾아온 소형 보행 여행자가 있습니다. 두꺼운 유리 헬멧 안으로 비치는 그의 눈가에 어린 안도감의 눈물과, 그가 손에 쥔 기묘한 나침반 부품이 등대 빔을 향해 내는 소리는 어떠했나요?";
+    return "머리 위 정수리 너머의 초근접 궤도를 가득 덮으며 웅장하게 위압감을 주는 거대한 자율 수리 기계 로봇이 등대의 주파수 안테나를 향해 정밀 레이저 빔 신호를 쏘고 지나갑니다. 등대 시스템에 새겨진 그들의 기계적이고 엄숙한 전언은 무엇이었습니까?";
+  };
+
   // 밤의 임무 세부 판정 생성
   const triggerMaintenanceTask = () => {
     const rolled = rollDie();
@@ -615,13 +723,15 @@ export default function App() {
     else if (drawn.suit === '하트') distanceText = "하트: 지기님의 손을 뻗으면 당장이라도 닿을 것 같은 등대 바위 섬의 근접 난간 거리";
     else if (drawn.suit === '다이아몬드') distanceText = "다이아몬드: 머리 위 하늘 정수리를 가득 덮으며 웅장하게 위압감을 뽐내는 초근접 궤도";
 
+    const specificQuestion = getObservationPrompt(rolled, drawn.suit);
+
     setCurrentDutyResult({
       type: 'observation',
       title: `경외로운 우주 관측 - 주사위 ${rolled}`,
       details: obsObj.title,
       description: obsObj.description,
       examples: obsObj.examples,
-      questions: obsObj.questions,
+      questions: `${obsObj.questions}\n\n💡 [${drawn.suit} 거리 관측 프롬프트]: ${specificQuestion}`,
       cardDrawn: `${drawn.suit} ${drawn.value}`,
       cardColor: drawn.color,
       outcome: `관측 고도: ${distanceText}`,
@@ -637,6 +747,13 @@ export default function App() {
     
     const eventObj = HAPPENINGS[drawn.value] || HAPPENINGS["2"];
 
+    let autoAction = null;
+    if (drawn.value === '9') {
+      autoAction = 'time_warp_forward';
+    } else if (drawn.value === 'K') {
+      autoAction = 'time_warp_backward';
+    }
+
     setCurrentDutyResult({
       type: 'happening',
       title: `우주 사건 포착 - 카드 ${drawn.suit} ${drawn.value}`,
@@ -644,8 +761,10 @@ export default function App() {
       description: eventObj.description,
       examples: eventObj.examples,
       cardDrawn: `${drawn.suit} ${drawn.value}`,
+      cardValue: drawn.value,
       cardColor: drawn.color,
       severity: severity,
+      autoAction: autoAction,
       userLog: ''
     });
   };
@@ -710,7 +829,8 @@ export default function App() {
       dutiesLog: shiftState.duties.map(d => `[${d.details}] -> ${d.userLog}`).join("\n\n"),
       dutiesRaw: [...shiftState.duties],
       remarks: shiftState.remarks,
-      seasonEffect: activeSeason ? activeSeason.name : "일반 평온기"
+      seasonEffect: activeSeason ? activeSeason.name : "일반 평온기",
+      isEndingJournal: isLeavingLighthouse
     };
 
     setJournals(prev => [newJournal, ...prev]);
@@ -744,13 +864,57 @@ export default function App() {
     setShiftState(freshShift);
     localStorage.setItem('lighthouse_current_shift', JSON.stringify(freshShift));
     
-    setActiveTab('archive');
-    alert("📝 등대 일지 보관소에 오늘 밤의 기록이 무사히 철해졌습니다! 안전한 휴식을 보내시기 바랍니다.");
+    if (isLeavingLighthouse) {
+      setLastEndingJournal(newJournal);
+      setShowEndingModal(true);
+    } else {
+      setActiveTab('archive');
+      alert("📝 등대 일지 보관소에 오늘 밤의 기록이 무사히 철해졌습니다! 안전한 휴식을 보내시기 바랍니다.");
+    }
   };
 
   const deleteJournal = (id) => {
     if (!window.confirm("정말 이 등대 일지 기록을 영구 폐기하시겠습니까?")) return;
     setJournals(prev => prev.filter(j => j.id !== id));
+  };
+
+  const restartNewKeeper = () => {
+    setKeeperProfile({
+      playbookId: 'caretaker',
+      name: '',
+      gender: '',
+      hateFact: '',
+      careItem: '',
+      reminder: '',
+      proudWord: '',
+      hideWord: '',
+      apparel: [],
+      keeperNo: Math.floor(1000 + Math.random() * 9000).toString()
+    });
+    localStorage.removeItem('lighthouse_keeper_profile');
+    
+    const freshShift = {
+      phase: 1,
+      date: '',
+      time: '',
+      moodId: 'happy',
+      weatherTitle: '',
+      weatherDesc: '',
+      lightingAttempts: 1,
+      lightingDifficulty: '',
+      isLampLit: false,
+      isClockworkWound: false,
+      duties: [],
+      remarks: ''
+    };
+    setShiftState(freshShift);
+    localStorage.setItem('lighthouse_current_shift', JSON.stringify(freshShift));
+    
+    setIsLeavingLighthouse(false);
+    setShowEndingModal(false);
+    setLastEndingJournal(null);
+    setActiveTab('character');
+    alert("🆕 새로운 등대지기를 생성하는 성소로 이동했습니다. 당신의 다음 이야기를 시작하세요!");
   };
 
   const exportToJson = () => {
@@ -1493,6 +1657,9 @@ export default function App() {
                   각 임무는 주사위(1d6)를 굴려 6개의 세부 업무 중 하나를 부여받고, 카드(Card)를 뽑아 4가지 난이도나 세부 판정을 시뮬레이션합니다. 
                   임무를 수행한 후, 등대지기가 어떻게 대처하여 완료했는지 상상의 나래를 펴서 일지(Duty Log)를 작성하고 등록하세요!
                 </p>
+                <p className="helper-content" style={{ marginTop: '8px', borderTop: '1px dashed var(--section-border)', paddingTop: '8px', fontStyle: 'italic', color: 'var(--text-gold)', fontSize: '12px' }}>
+                  💡 <strong>[룰북 p.40 필수 규칙]:</strong> 한 밤중에 꼭 하나의 임무만 수행해야 하는 것이 아닙니다! 등대의 보살핌이 충분하다고 느낄 때까지 언제든지 업무 목록으로 되돌아와 <strong>여러 임무를 반복 수행</strong>하며 일지를 누적해 나갈 수 있습니다.
+                </p>
               </div>
 
               {shiftState.duties.length > 0 && (
@@ -1502,13 +1669,13 @@ export default function App() {
                   </h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {shiftState.duties.map((d, idx) => (
-                      <div key={idx} style={{ padding: '12px', background: 'rgba(3, 7, 18, 0.4)', border: '1px solid rgba(223, 183, 108, 0.2)', borderRadius: '6px', fontSize: '13px' }}>
+                      <div key={idx} style={{ padding: '12px', background: 'var(--card-bg-dark)', border: '1px solid var(--section-border)', borderRadius: '6px', fontSize: '13px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontWeight: 'bold' }}>
                           <span style={{ color: 'var(--text-gold)' }}>{d.title}</span>
                           <span className="stellar-badge">카드: {d.cardDrawn} ({d.cardColor})</span>
                         </div>
                         <p style={{ color: 'var(--text-primary)', fontStyle: 'italic' }}>{d.details} - {d.outcome}</p>
-                        <p style={{ color: 'var(--text-secondary)', marginTop: '6px', borderTop: '1px dashed rgba(223, 183, 108, 0.1)', paddingTop: '6px' }}>
+                        <p style={{ color: 'var(--text-secondary)', marginTop: '6px', borderTop: '1px dashed var(--section-border)', paddingTop: '6px' }}>
                           <strong>일지 기록:</strong> {d.userLog}
                         </p>
                       </div>
@@ -1518,34 +1685,57 @@ export default function App() {
               )}
 
               {!activeDutyType && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', alignItems: 'center', padding: '20px', background: 'rgba(3, 7, 18, 0.2)', borderRadius: '8px', border: '1px solid rgba(223, 183, 108, 0.1)' }}>
-                  <span style={{ fontSize: '13px', color: 'var(--text-gold)' }}>새로운 업무의 범주를 선택하여 시뮬레이션을 개시하세요:</span>
-                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <button 
-                      className="stellar-btn" 
-                      onClick={() => { setActiveDutyType('maintenance'); triggerMaintenanceTask(); }}
-                    >
-                      <Settings size={16} /> <span className="sans-font">1.</span> 도구 및 등대 유지보수
-                    </button>
-                    <button 
-                      className="stellar-btn" 
-                      onClick={() => { setActiveDutyType('observation'); triggerObservationTask(); }}
-                    >
-                      <BookOpen size={16} /> <span className="sans-font">2.</span> 경외로운 우주 관측
-                    </button>
-                    <button 
-                      className="stellar-btn" 
-                      onClick={() => { setActiveDutyType('happening'); triggerHappeningTask(); }}
-                    >
-                      <AlertCircle size={16} /> <span className="sans-font">3.</span> 불시의 우주 사건
-                    </button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  
+                  {/* 날씨 연동 밤의 분위기 판정 권장 업무 가이드 (룰북 p.41) */}
+                  {shiftState.moodId && getWeatherRecommendation(shiftState.moodId) && (() => {
+                    const rec = getWeatherRecommendation(shiftState.moodId);
+                    return (
+                      <div className="helper-box cyan-accent" style={{ borderLeftColor: 'var(--text-gold)', background: 'var(--card-bg-dark)', padding: '14px' }}>
+                        <h4 className="helper-title" style={{ color: 'var(--text-gold)', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px' }}>
+                          📡 룰북 p.41: 밤의 분위기에 따른 권장 임무 가이드
+                        </h4>
+                        <p className="helper-content" style={{ fontSize: '13px', lineHeight: '1.6', marginTop: '4px' }}>
+                          오늘 밤 등대 바깥의 성간 기후 분위기는 <strong>{rec.moodDesc}</strong> 상태입니다. 
+                          룰북의 기후 감응 수칙에 의거하여, 지기님은 오늘 밤 <strong>[{rec.recTypeKo}]</strong> 임무를 우선 수행하는 것이 권장됩니다.
+                          <span style={{ display: 'block', marginTop: '6px', fontSize: '12.5px', color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+                            &quot;{rec.reason}&quot;
+                          </span>
+                        </p>
+                      </div>
+                    );
+                  })()}
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', alignItems: 'center', padding: '20px', background: 'var(--subtle-bg)', borderRadius: '8px', border: '1px solid var(--section-border)' }}>
+                    <span style={{ fontSize: '13px', color: 'var(--text-gold)' }}>새로운 업무의 범주를 선택하여 시뮬레이션을 개시하세요:</span>
+                    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                      <button 
+                        className="stellar-btn" 
+                        onClick={() => { setActiveDutyType('maintenance'); triggerMaintenanceTask(); }}
+                      >
+                        <Settings size={16} /> <span className="sans-font">1.</span> 도구 및 등대 유지보수
+                      </button>
+                      <button 
+                        className="stellar-btn" 
+                        onClick={() => { setActiveDutyType('observation'); triggerObservationTask(); }}
+                      >
+                        <BookOpen size={16} /> <span className="sans-font">2.</span> 경외로운 우주 관측
+                      </button>
+                      <button 
+                        className="stellar-btn" 
+                        onClick={() => { setActiveDutyType('happening'); triggerHappeningTask(); }}
+                      >
+                        <AlertCircle size={16} /> <span className="sans-font">3.</span> 불시의 우주 사건
+                      </button>
+                    </div>
                   </div>
+
                 </div>
               )}
 
               {activeDutyType && currentDutyResult && (
-                <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '16px', background: 'rgba(3, 7, 18, 0.5)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '10px' }}>
+                <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '16px', background: 'var(--panel-bg-alt)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--section-border)', paddingBottom: '10px' }}>
                     <h4 className="serif-font" style={{ fontSize: '16px', color: 'var(--text-gold)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <Dices size={16} /> {currentDutyResult.title}
                     </h4>
@@ -1561,12 +1751,12 @@ export default function App() {
                     <p style={{ color: 'var(--text-secondary)', fontSize: '13px', marginTop: '4px' }}>
                       {currentDutyResult.description}
                     </p>
-                    <p style={{ fontSize: '12px', background: 'rgba(3, 7, 18, 0.4)', padding: '10px', borderRadius: '6px', borderLeft: '3px solid var(--border-color)', marginTop: '8px', color: 'var(--text-primary)', opacity: 0.9 }}>
+                    <p style={{ fontSize: '12px', background: 'var(--card-bg-dark)', padding: '10px', borderRadius: '6px', borderLeft: '3px solid var(--border-color)', marginTop: '8px', color: 'var(--text-primary)', opacity: 0.9 }}>
                       <strong>교본 예시:</strong> {currentDutyResult.examples}
                     </p>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', borderTop: '1px dashed rgba(223, 183, 108, 0.1)', paddingTop: '12px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', borderTop: '1px dashed var(--section-border)', paddingTop: '12px' }}>
                     <div>
                       <span style={{ fontSize: '12px', color: 'var(--text-gold)' }}>카드 판정:</span>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '6px' }}>
@@ -1592,9 +1782,69 @@ export default function App() {
                           </p>
                         </div>
                       ) : (
-                        <p style={{ fontSize: '12px', color: '#ef4444', marginTop: '6px' }}>
-                          {currentDutyResult.severity}
-                        </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <p style={{ fontSize: '12px', color: '#ef4444', marginTop: '6px' }}>
+                            {currentDutyResult.severity}
+                          </p>
+                          {currentDutyResult.autoAction === 'time_warp_forward' && (
+                            <div style={{ background: 'rgba(168, 85, 247, 0.1)', padding: '10px', borderRadius: '6px', border: '1px solid rgba(168, 85, 247, 0.3)', marginTop: '6px' }}>
+                              <span style={{ fontSize: '12.5px', color: '#c084fc', fontWeight: 'bold', display: 'block', marginBottom: '4px' }}>
+                                ⏩ [룰북 p.47 특수 규칙] 시간 도약 발동 가능!
+                              </span>
+                              <p style={{ fontSize: '11px', color: 'var(--text-secondary)', marginBottom: '8px' }}>
+                                9번 카드의 특수한 시간 왜곡 작용으로 인해 오늘 밤의 지루한 지기 근무를 즉시 건너뛰고 바로 사후 회고 및 종료 단계로 진입할 수 있습니다.
+                              </p>
+                              <button
+                                className="stellar-btn"
+                                style={{ background: '#a855f7', color: '#fff', fontSize: '11.5px', padding: '6px 12px', width: '100%', cursor: 'pointer' }}
+                                onClick={() => {
+                                  const currentLog = currentDutyResult.userLog.trim() 
+                                    ? currentDutyResult.userLog 
+                                    : "시간의 대도약이 발생하여 오늘 밤의 근무가 즉시 막을 내립니다.";
+                                  setShiftState(prev => ({
+                                    ...prev,
+                                    duties: [...prev.duties, { ...currentDutyResult, userLog: currentLog + " [9번 카드 시간 도약 발동으로 근무 즉시 종료]" }],
+                                    phase: 4
+                                  }));
+                                  setCurrentDutyResult(null);
+                                  setActiveDutyType(null);
+                                  alert("⏩ [시간 도약] 9번 카드 효과로 인해 오늘 밤의 지기 근무가 즉시 종료되고, 사후 성찰 및 회고 단계로 이동합니다.");
+                                }}
+                              >
+                                시간 도약 발동: 밤 즉시 종료 및 회고 단계로 이동
+                              </button>
+                            </div>
+                          )}
+                          {currentDutyResult.autoAction === 'time_warp_backward' && (
+                            <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '10px', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.3)', marginTop: '6px' }}>
+                              <span style={{ fontSize: '12.5px', color: '#f87171', fontWeight: 'bold', display: 'block', marginBottom: '4px' }}>
+                                ⏪ [룰북 p.47 특수 규칙] 시간 역행 발동! (강제)
+                              </span>
+                              <p style={{ fontSize: '11px', color: 'var(--text-secondary)', marginBottom: '8px' }}>
+                                K번 카드의 인과율 왜곡 작용에 휘말려 오늘 밤 진행했던 모든 업무 기록이 소멸하고 시간선이 점등 의식 직전으로 되돌아갑니다.
+                              </p>
+                              <button
+                                className="stellar-btn"
+                                style={{ background: '#dc2626', color: '#fff', fontSize: '11.5px', padding: '6px 12px', width: '100%', cursor: 'pointer' }}
+                                onClick={() => {
+                                  setShiftState(prev => ({
+                                    ...prev,
+                                    duties: [],
+                                    isLampLit: false,
+                                    lightingAttempts: 1,
+                                    phase: 1
+                                  }));
+                                  setWickCardResult(null);
+                                  setCurrentDutyResult(null);
+                                  setActiveDutyType(null);
+                                  alert("⏪ [시간 역행] K번 카드 효과로 인해 우주의 인과율이 격렬하게 꼬이며 오늘 밤의 모든 업무 기록이 새하얗게 증발했습니다! 시간선이 되감겨 오늘 밤 점등 단계(단계 1)부터 다시 시작해야 합니다.");
+                                }}
+                              >
+                                시간 역행 발동: 오늘 밤 기록 초기화 및 점등 단계로 리셋
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -1724,17 +1974,68 @@ export default function App() {
                     />
                   </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(223, 183, 108, 0.2)', paddingTop: '16px' }}>
+                  {/* 등대를 떠나는 영원한 결말 (Leaving the Lighthouse) */}
+                  <div style={{ 
+                    marginTop: '10px', 
+                    padding: '16px', 
+                    background: isLeavingLighthouse ? 'rgba(184, 149, 74, 0.1)' : 'var(--subtle-bg)', 
+                    border: isLeavingLighthouse ? '2px solid var(--border-color)' : '1px dashed var(--section-border)', 
+                    borderRadius: '8px',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                      <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-gold)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        🚪 등대를 떠나는 영원한 결말 (Leaving the Lighthouse)
+                      </span>
+                      <button 
+                        className={isLeavingLighthouse ? 'stellar-btn' : 'stellar-btn-outline'} 
+                        style={{ padding: '4px 10px', fontSize: '12px', cursor: 'pointer' }}
+                        onClick={() => {
+                          const turningOn = !isLeavingLighthouse;
+                          setIsLeavingLighthouse(turningOn);
+                          if (turningOn) {
+                            if (!shiftState.remarks.trim()) {
+                              setShiftState(prev => ({
+                                ...prev,
+                                remarks: `우주의 끝에 외로이 놓인 이곳 등대에서 보낸 수많은 밤들이 끝났습니다. 나는 랜턴을 조용히 꺼두고, 내 낡은 가방을 손에 쥔 채 바깥 계단을 하나씩 밟아 내려갑니다. 등대를 향해 다시는 뒤돌아보지 않을 것입니다. 내 영혼의 긴 휴식을 찾아 공허 속으로 영원히 떠납니다...`
+                              }));
+                            }
+                          }
+                        }}
+                      >
+                        {isLeavingLighthouse ? "❌ 결말 취소" : "🚪 결말 선택하기"}
+                      </button>
+                    </div>
+                    <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                      * 룰북 규칙: 이 게임에는 고정된 승리/패배 조건이 없습니다. 지기님이 등대에서의 긴 여정이 완수되었고, 이제 떠나야 할 때가 왔다고 느끼는 바로 이 순간이 결말이 됩니다.
+                      <strong style={{ color: 'var(--text-gold)', display: 'block', marginTop: '4px' }}>
+                        {isLeavingLighthouse 
+                          ? "⚠️ 경고: 결말을 선택하여 저장하면 이 등대지기의 일대기가 최종 종결되어 아카이브에 영구 저장되며, 이후 새로운 등대지기를 생성해야 합니다."
+                          : "이 옵션을 활성화하면 오늘 밤의 일지 작성을 마지막으로 등대지기의 소임에서 영구 은퇴하며, 아카이브에 찬란한 골드 테두리로 영구 보관됩니다."}
+                      </strong>
+                    </p>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--section-border)', paddingTop: '16px' }}>
                     <button className="stellar-btn-outline" onClick={() => setShiftState(prev => ({ ...prev, phase: 3 }))}>
                       이전 단계
                     </button>
                     
                     <button 
                       className="stellar-btn" 
+                      style={isLeavingLighthouse ? { background: 'linear-gradient(135deg, #b8954a 0%, #d4af37 100%)', color: '#0a0b10', fontWeight: 'bold' } : {}}
                       disabled={!shiftState.remarks.trim()}
                       onClick={saveShiftToJournals}
                     >
-                      <Save size={16} /> 등대 일지 최종 보관함에 영구 저장 및 철하기
+                      {isLeavingLighthouse ? (
+                        <>
+                          <LogOut size={16} /> 등대 영구 은퇴 및 최종 결말록 헌정하기
+                        </>
+                      ) : (
+                        <>
+                          <Save size={16} /> 등대 일지 최종 보관함에 영구 저장 및 철하기
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -1787,17 +2088,32 @@ export default function App() {
           </div>
 
           {filteredJournals.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px', background: 'rgba(3, 7, 18, 0.3)', borderRadius: '8px', color: 'var(--text-secondary)' }}>
+            <div style={{ textAlign: 'center', padding: '40px', background: 'var(--subtle-bg)', borderRadius: '8px', color: 'var(--text-secondary)' }}>
               보관함에 저장된 등대 일지가 존재하지 않거나, 검색 조건에 부합하는 일지가 없습니다.
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
               {filteredJournals.map((j) => (
-                <div key={j.id} className="archive-sheet-card">
+                <div key={j.id} className={`archive-sheet-card ${j.isEndingJournal ? 'ending-sheet' : ''}`}>
                   
+                  {j.isEndingJournal && (
+                    <div style={{
+                      background: 'linear-gradient(135deg, #b8954a 0%, #d4af37 50%, #b8954a 100%)',
+                      color: '#0a0b10',
+                      padding: '8px 20px',
+                      fontSize: '13px',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      letterSpacing: '0.05em',
+                      textShadow: '0 1px 2px rgba(255,255,255,0.2)'
+                    }}>
+                      🌌 등대를 은퇴한 지기의 영원한 여정 결말록 (Final Departure Ledger)
+                    </div>
+                  )}
+
                   <div className="archive-sheet-header">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '13px', fontStyle: 'italic', color: '#8b6b3f', fontWeight: 'bold' }}>
+                      <span style={{ fontSize: '13px', fontStyle: 'italic', color: 'var(--text-gold)', fontWeight: 'bold' }}>
                         우주 등대지기 연맹 자산 대장록
                       </span>
                       <button 
@@ -1817,14 +2133,14 @@ export default function App() {
 
                   <div className="archive-sheet-row">
                     <div className="archive-sheet-cell label">등대지기 신원</div>
-                    <div className="archive-sheet-cell value">고유번호 No. {j.keeperNo} | {j.keeperName} ({j.playbookName})</div>
+                    <div className="archive-sheet-cell value">고유번호 No. {j.keeperNo} | {j.keeperName} ({j.playbookName}) {j.isEndingJournal ? " [은퇴함]" : ""}</div>
                   </div>
 
                   <div className="archive-sheet-row">
                     <div className="archive-sheet-cell label">당시 기후 환경</div>
                     <div className="archive-sheet-cell value">
                       <strong>{j.weather}</strong>
-                      <p style={{ fontSize: '12px', color: '#555', marginTop: '4px', fontStyle: 'italic' }}>
+                      <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>
                         {j.weatherDesc}
                       </p>
                     </div>
@@ -1842,7 +2158,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div style={{ background: '#f5f2e9', borderTop: '2px solid #7d6b58', padding: '6px 20px', fontSize: '12px', fontWeight: '700', color: '#5a4b3c' }}>
+                  <div style={{ background: 'var(--subtle-bg)', borderTop: '2px solid var(--border-color)', padding: '6px 20px', fontSize: '12px', fontWeight: '700', color: 'var(--text-gold)' }}>
                     최종 사후 성찰 및 일과
                   </div>
                   <div className="archive-sheet-remarks">
@@ -2071,7 +2387,7 @@ export default function App() {
             </p>
           </div>
 
-          <h2 className="serif-font" style={{ fontSize: '20px', color: 'var(--text-gold)', borderBottom: '1px solid rgba(223, 183, 108, 0.2)', paddingBottom: '10px' }}>
+          <h2 className="serif-font" style={{ fontSize: '20px', color: 'var(--text-gold)', borderBottom: '1px solid var(--section-border)', paddingBottom: '10px' }}>
             🚨 우주 극단 대기후 <span className="sans-font">6</span>대 시즌 매뉴얼
           </h2>
 
@@ -2083,8 +2399,8 @@ export default function App() {
                   key={s.id} 
                   style={{ 
                     padding: '20px', 
-                    background: 'rgba(3, 7, 18, 0.4)', 
-                    border: activeSeason?.id === s.id ? '2px solid #ef4444' : '1px solid rgba(223, 183, 108, 0.2)',
+                    background: 'var(--card-bg-dark)', 
+                    border: activeSeason?.id === s.id ? '2px solid #ef4444' : '1px solid var(--section-border)',
                     borderRadius: '8px'
                   }}
                 >
@@ -2282,7 +2598,85 @@ export default function App() {
         </div>
       )}
 
-      <footer style={{ marginTop: '60px', borderTop: '1px solid rgba(223, 183, 108, 0.1)', paddingTop: '20px', textAlign: 'center', fontSize: '11px', color: 'var(--text-secondary)' }}>
+      {/* 등대 영구 은퇴 결말 축하 오버레이 */}
+      {showEndingModal && lastEndingJournal && (
+        <div style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(7, 8, 13, 0.95)',
+          zIndex: 9999,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '20px',
+          animation: 'fadeIn 0.5s ease'
+        }}>
+          <div className="glass-panel" style={{
+            maxWidth: '650px',
+            width: '100%',
+            background: 'var(--panel-bg-alt)',
+            border: '2px solid var(--border-color)',
+            boxShadow: '0 0 40px rgba(184, 149, 74, 0.5)',
+            borderRadius: '12px',
+            padding: '30px',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            {/* Golden particles/stars effect */}
+            <div style={{ position: 'absolute', top: -10, left: -10, right: -10, bottom: -10, pointerEvents: 'none', opacity: 0.15, background: 'radial-gradient(circle, #b8954a 10%, transparent 10.01%)', backgroundSize: '20px 20px' }} />
+            
+            <h2 className="serif-font" style={{ fontSize: '24px', color: 'var(--text-gold)', letterSpacing: '0.05em', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+              <span style={{ fontSize: '32px' }}>🌌</span>
+              우주 등대지기의 영원한 여정 결말록
+            </h2>
+            
+            <div style={{ borderTop: '1px solid var(--section-border)', borderBottom: '1px solid var(--section-border)', padding: '20px 10px', margin: '10px 0', background: 'var(--card-bg-dark)', borderRadius: '6px' }}>
+              <p style={{ fontSize: '15px', color: 'var(--text-primary)', lineHeight: '1.8', fontStyle: 'italic', whiteSpace: 'pre-wrap' }}>
+                &quot;{lastEndingJournal.remarks}&quot;
+              </p>
+            </div>
+
+            <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+              <p>
+                고유번호 No. <strong>{lastEndingJournal.keeperNo}</strong> | <strong>{lastEndingJournal.keeperName}</strong> ({lastEndingJournal.playbookName}) 님은
+                이로써 우주 경계선 등대지기의 고독하고도 위대한 임무를 성공적으로 완수하고 은퇴하셨습니다.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                당신이 흘려 보냈던 수많은 외로운 밤들과 성실히 새겨나간 {journals.length}편의 소중한 기록들은 이제 등대 일지 보관고에 영원히 잠들어 빛날 것입니다.
+              </p>
+            </div>
+
+            <div style={{ color: 'var(--text-gold)', fontWeight: 'bold', fontSize: '14.5px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px' }}>
+              <Sparkles size={16} /> 지기님, 헌신적인 우주적 노고에 경의를 표합니다. <Sparkles size={16} />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '10px', zIndex: 10 }}>
+              <button 
+                className="stellar-btn-outline" 
+                onClick={() => {
+                  setShowEndingModal(false);
+                  setActiveTab('archive');
+                }}
+              >
+                📖 보관함에서 결말 보기
+              </button>
+              <button 
+                className="stellar-btn" 
+                style={{ background: 'linear-gradient(135deg, #b8954a 0%, #d4af37 100%)', color: '#0a0b10', fontWeight: 'bold' }}
+                onClick={restartNewKeeper}
+              >
+                🆕 새 등대지기 생성 (게임 리셋)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <footer style={{ marginTop: '60px', borderTop: '1px solid var(--section-border)', paddingTop: '20px', textAlign: 'center', fontSize: '11px', color: 'var(--text-secondary)' }}>
         © 2026 LostWays Club & Ella Lim. Built beautifully with Antigravity AI Pair Programming.
       </footer>
 
