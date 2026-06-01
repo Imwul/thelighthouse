@@ -1362,25 +1362,43 @@ export default function App() {
                 </div>
               </div>
               
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', background: 'rgba(3, 7, 18, 0.4)', padding: '10px', borderRadius: '6px' }}>
-                {activePlaybook.words.map((w, idx) => (
-                  <div key={idx} style={{ display: 'flex', gap: '4px' }}>
-                    <button 
-                      className="stellar-btn-outline" 
-                      style={{ padding: '4px 8px', fontSize: '11px', borderColor: keeperProfile.proudWord === w ? 'var(--accent-cyan)' : '' }} 
-                      onClick={() => setKeeperProfile(prev => ({ ...prev, proudWord: w }))}
-                    >
-                      자부심: {w}
-                    </button>
-                    <button 
-                      className="stellar-btn-outline" 
-                      style={{ padding: '4px 8px', fontSize: '11px', borderColor: keeperProfile.hideWord === w ? '#ef4444' : '' }} 
-                      onClick={() => setKeeperProfile(prev => ({ ...prev, hideWord: w }))}
-                    >
-                      숨길 점: {w}
-                    </button>
-                  </div>
-                ))}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', background: 'var(--card-bg-dark)', padding: '10px', borderRadius: '6px', border: '1px solid var(--section-border)' }}>
+                {activePlaybook.words.map((w, idx) => {
+                  const isProud = keeperProfile.proudWord === w;
+                  const isHide = keeperProfile.hideWord === w;
+                  return (
+                    <div key={idx} style={{ display: 'flex', gap: '4px' }}>
+                      <button 
+                        className="stellar-btn-outline" 
+                        style={{ 
+                          padding: '4px 8px', 
+                          fontSize: '11px', 
+                          borderColor: isProud ? 'var(--accent-cyan)' : 'var(--border-color)',
+                          background: isProud ? 'var(--accent-cyan-glow)' : 'transparent',
+                          color: isProud ? 'var(--accent-cyan)' : 'var(--text-primary)',
+                          fontWeight: isProud ? 'bold' : 'normal'
+                        }} 
+                        onClick={() => setKeeperProfile(prev => ({ ...prev, proudWord: w }))}
+                      >
+                        자부심: {w}
+                      </button>
+                      <button 
+                        className="stellar-btn-outline" 
+                        style={{ 
+                          padding: '4px 8px', 
+                          fontSize: '11px', 
+                          borderColor: isHide ? '#ef4444' : 'var(--border-color)',
+                          background: isHide ? 'rgba(239, 68, 68, 0.12)' : 'transparent',
+                          color: isHide ? '#ef4444' : 'var(--text-primary)',
+                          fontWeight: isHide ? 'bold' : 'normal'
+                        }} 
+                        onClick={() => setKeeperProfile(prev => ({ ...prev, hideWord: w }))}
+                      >
+                        숨길 점: {w}
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
