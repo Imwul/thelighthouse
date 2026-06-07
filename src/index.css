@@ -29,32 +29,32 @@
   --subtle-bg: rgba(14, 17, 28, 0.5); /* For inline style replacement */
   --card-bg-dark: rgba(10, 12, 20, 0.55);
   --section-border: rgba(184, 149, 74, 0.18);
-  --font-serif: 'Pretendard', -apple-system, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
   --font-sans: 'Pretendard', -apple-system, sans-serif;
 }
 
 /* Light / Warm Parchment Theme */
 body.theme-light-parchment {
-  --bg-color: #f5f1e8; /* Warm antique parchment */
-  --panel-bg: rgba(255, 252, 245, 0.92);
-  --panel-bg-alt: rgba(240, 234, 220, 0.88);
-  --border-color: #8c7040; /* Bronze amber */
-  --border-glow: rgba(140, 112, 64, 0.18);
-  --text-primary: #2c2418; /* Deep sepia */
-  --text-secondary: #6d6050; /* Warm stone */
-  --text-gold: #7a5c1e; /* Deep amber */
+  --bg-color: #fcfaf2; /* Light elegant cream paper */
+  --panel-bg: #FAF7F0; /* Soft warm paper */
+  --panel-bg-alt: #eae4d3; /* Darker paper sheet */
+  --border-color: #2b427b; /* Elegant deep navy border */
+  --border-glow: rgba(43, 66, 123, 0.15);
+  --text-primary: #121e3d; /* Deep ink navy primary */
+  --text-secondary: #47587f; /* Muted slate navy secondary */
+  --text-gold: #2b427b; /* Deep navy ink for gold headings */
   --accent-cyan: #1a7ab5; /* Calm teal blue */
   --accent-cyan-glow: rgba(26, 122, 181, 0.15);
-  --input-bg: rgba(255, 252, 245, 0.95);
-  --shadow-color: rgba(100, 80, 50, 0.12);
-  --accent-color: #8c7040;
-  --badge-bg: rgba(140, 112, 64, 0.08);
-  --btn-bg: #6d5525; /* Rich earth brown */
-  --btn-text: #fffcf5;
-  --btn-hover: #5a4520;
-  --subtle-bg: rgba(240, 234, 220, 0.6);
-  --card-bg-dark: rgba(235, 228, 212, 0.7);
-  --section-border: rgba(140, 112, 64, 0.2);
+  --input-bg: #FAF7F0;
+  --shadow-color: rgba(43, 66, 123, 0.08);
+  --accent-color: #2b427b;
+  --badge-bg: rgba(43, 66, 123, 0.06);
+  --btn-bg: #2b427b; /* Deep navy buttons */
+  --btn-text: #fcfaf2;
+  --btn-hover: #1c305f;
+  --subtle-bg: #eae4d3;
+  --card-bg-dark: rgba(234, 228, 211, 0.5);
+  --section-border: rgba(43, 66, 123, 0.2);
 }
 
 /* Global Font Override & Letter Spacing (Mandatory -5% rule) & Font Size Boost */
@@ -1131,4 +1131,203 @@ label {
 /* Custom utility for modern sans-serif numbers and normal labels */
 .sans-font, .sans-serif {
   font-family: 'Pretendard', -apple-system, sans-serif !important;
+}
+
+/* ==========================================================================
+   룰북 테마 확장 스타일 (더블 프레임, 문양 구분선, 플레이어 저널 대장)
+   ========================================================================== */
+
+/* 룰북 테마용 메인 더블 프레임 (파치먼트 모드에서만 활성화) */
+body.theme-light-parchment .glass-panel {
+  position: relative;
+  border: 1px solid var(--border-color);
+}
+body.theme-light-parchment .glass-panel::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+body.theme-light-parchment .archive-sheet-card {
+  border: 2px solid var(--border-color);
+}
+
+/* 룰북 문양 구분선 */
+.rulebook-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 24px 0;
+  color: var(--border-color);
+}
+.rulebook-divider .divider-line {
+  height: 1px;
+  width: 80px;
+  background-color: var(--border-color);
+  opacity: 0.5;
+}
+.rulebook-divider .divider-symbol {
+  font-family: var(--font-serif) !important;
+  font-size: 18px;
+  letter-spacing: 0.25em;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* 플레이어 저널 (Logbook Table) 디자인 (사진 1 참고) */
+.logbook-journal-paper {
+  background: var(--panel-bg-alt);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.logbook-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.logbook-row {
+  display: flex;
+  width: 100%;
+}
+
+.logbook-row.border-bottom {
+  border-bottom: 1.5px solid var(--border-color);
+}
+
+.logbook-row.bg-subtle {
+  background-color: var(--card-bg-dark);
+}
+
+.logbook-cell {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.logbook-cell.border-right {
+  border-right: 1.5px solid var(--border-color);
+}
+
+.logbook-cell.header-cell {
+  font-family: var(--font-serif) !important;
+  font-size: 13.5px !important;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: capitalize;
+  text-align: center;
+  padding: 8px 12px;
+}
+
+.logbook-cell.value-cell {
+  font-size: 13.5px !important;
+  text-align: center;
+  color: var(--text-primary);
+  justify-content: center;
+  padding: 12px 10px;
+}
+
+.logbook-label {
+  font-family: var(--font-serif) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 4px !important;
+  opacity: 0.9;
+}
+
+.logbook-value-display {
+  font-size: 15px;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 2px 0;
+}
+
+.logbook-text-row {
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.logbook-underline {
+  border-bottom: 1.5px solid var(--border-color);
+  padding: 0 6px 1px 6px;
+  font-weight: 700;
+}
+
+/* 도트(점선) 필기 노트 공간 */
+.logbook-textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans) !important;
+  font-size: 16px !important;
+  line-height: 28px !important;
+  color: var(--text-primary);
+  resize: vertical;
+  min-height: 336px; /* 12 lines */
+  padding: 4px 6px;
+}
+
+body:not(.theme-light-parchment) .logbook-textarea {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='28'><line x1='0' y1='27' x2='100%' y2='27' stroke='%23b8954a' stroke-dasharray='1 3' stroke-width='1'/></svg>");
+  background-size: 100% 28px;
+  background-repeat: repeat;
+}
+
+body.theme-light-parchment .logbook-textarea {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='28'><line x1='0' y1='27' x2='100%' y2='27' stroke='%232b427b' stroke-dasharray='1 3' stroke-width='1'/></svg>");
+  background-size: 100% 28px;
+  background-repeat: repeat;
+}
+
+.logbook-remarks-display {
+  font-family: var(--font-sans) !important;
+  font-size: 15.5px !important;
+  line-height: 28px !important;
+  color: var(--text-primary);
+  min-height: 140px;
+  padding: 4px 6px;
+  white-space: pre-wrap;
+}
+
+body:not(.theme-light-parchment) .logbook-remarks-display {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='28'><line x1='0' y1='27' x2='100%' y2='27' stroke='%23b8954a' stroke-dasharray='1 3' stroke-width='1'/></svg>");
+  background-size: 100% 28px;
+  background-repeat: repeat;
+}
+
+body.theme-light-parchment .logbook-remarks-display {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='28'><line x1='0' y1='27' x2='100%' y2='27' stroke='%232b427b' stroke-dasharray='1 3' stroke-width='1'/></svg>");
+  background-size: 100% 28px;
+  background-repeat: repeat;
+}
+
+/* 은퇴 대장 리본 */
+.ending-ledger-banner {
+  background: linear-gradient(135deg, #2b427b 0%, #3b82f6 50%, #2b427b 100%);
+  color: #ffffff;
+  padding: 8px 20px;
+  font-size: 13.5px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+body:not(.theme-light-parchment) .ending-ledger-banner {
+  background: linear-gradient(135deg, #b8954a 0%, #d4af37 50%, #b8954a 100%);
+  color: #0a0b10;
 }

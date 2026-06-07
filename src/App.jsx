@@ -87,8 +87,12 @@ export default function App() {
       hateFact: '',
       careItem: '',
       reminder: '',
+      ownSecret: '',
+      ritual: '',
       proudWord: '',
       hideWord: '',
+      hopeWord: '',
+      misconceptionWord: '',
       apparel: [],
       keeperNo: Math.floor(1000 + Math.random() * 9000).toString()
     };
@@ -816,6 +820,7 @@ export default function App() {
       return;
     }
 
+    const targetWeather = WEATHER_PATTERNS.find(w => w.title === shiftState.weatherTitle) || WEATHER_PATTERNS.find(w => w.id === shiftState.moodId);
     const newJournal = {
       id: Date.now().toString(),
       date: shiftState.date || new Date().toLocaleDateString(),
@@ -825,6 +830,9 @@ export default function App() {
       playbookName: activePlaybook.nameKo,
       weather: shiftState.weatherTitle,
       weatherDesc: shiftState.weatherDesc,
+      temp: targetWeather?.temp || "",
+      winds: targetWeather?.winds || "",
+      sights: targetWeather?.sights || "",
       lampLitAttempts: shiftState.lightingAttempts,
       dutiesLog: shiftState.duties.map(d => `[${d.details}] -> ${d.userLog}`).join("\n\n"),
       dutiesRaw: [...shiftState.duties],
@@ -886,8 +894,12 @@ export default function App() {
       hateFact: '',
       careItem: '',
       reminder: '',
+      ownSecret: '',
+      ritual: '',
       proudWord: '',
       hideWord: '',
+      hopeWord: '',
+      misconceptionWord: '',
       apparel: [],
       keeperNo: Math.floor(1000 + Math.random() * 9000).toString()
     });
@@ -1349,6 +1361,40 @@ export default function App() {
               </div>
             </div>
 
+            {activePlaybook.ownSecretLabel && (
+              <div>
+                <label style={{ fontSize: '13px', color: 'var(--text-gold)', display: 'block', marginBottom: '6px' }}>{activePlaybook.ownSecretLabel}</label>
+                <div className="customizer-options-group">
+                  {activePlaybook.ownSecretChoices.map((sec, idx) => (
+                    <button 
+                      key={idx} 
+                      className={`customizer-option-btn ${keeperProfile.ownSecret === sec ? 'selected' : ''}`}
+                      onClick={() => setKeeperProfile(prev => ({ ...prev, ownSecret: sec }))}
+                    >
+                      {sec}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {activePlaybook.ritualLabel && (
+              <div>
+                <label style={{ fontSize: '13px', color: 'var(--text-gold)', display: 'block', marginBottom: '6px' }}>{activePlaybook.ritualLabel}</label>
+                <div className="customizer-options-group">
+                  {activePlaybook.ritualChoices.map((rit, idx) => (
+                    <button 
+                      key={idx} 
+                      className={`customizer-option-btn ${keeperProfile.ritual === rit ? 'selected' : ''}`}
+                      onClick={() => setKeeperProfile(prev => ({ ...prev, ritual: rit }))}
+                    >
+                      {rit}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div>
               <label style={{ fontSize: '13px', color: 'var(--text-gold)', display: 'block', marginBottom: '6px' }}>
                 지기 성향 문장 설정
@@ -1360,14 +1406,26 @@ export default function App() {
                 <div style={{ fontSize: '13px' }}>
                   ✦ {activePlaybook.hideQuestion.replace('[단어]', `[${keeperProfile.hideWord || '______'}]`)}
                 </div>
+                {activePlaybook.hopeQuestion && (
+                  <div style={{ fontSize: '13px' }}>
+                    ✦ {activePlaybook.hopeQuestion.replace('[단어]', `[${keeperProfile.hopeWord || '______'}]`)}
+                  </div>
+                )}
+                {activePlaybook.misconceptionQuestion && (
+                  <div style={{ fontSize: '13px' }}>
+                    ✦ {activePlaybook.misconceptionQuestion.replace('[단어]', `[${keeperProfile.misconceptionWord || '______'}]`)}
+                  </div>
+                )}
               </div>
               
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', background: 'var(--card-bg-dark)', padding: '10px', borderRadius: '6px', border: '1px solid var(--section-border)' }}>
                 {activePlaybook.words.map((w, idx) => {
                   const isProud = keeperProfile.proudWord === w;
                   const isHide = keeperProfile.hideWord === w;
+                  const isHope = keeperProfile.hopeWord === w;
+                  const isMisconception = keeperProfile.misconceptionWord === w;
                   return (
-                    <div key={idx} style={{ display: 'flex', gap: '4px' }}>
+                    <div key={idx} style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
                       <button 
                         className="stellar-btn-outline" 
                         style={{ 
@@ -1396,6 +1454,38 @@ export default function App() {
                       >
                         숨길 점: {w}
                       </button>
+                      {activePlaybook.hopeQuestion && (
+                        <button 
+                          className="stellar-btn-outline" 
+                          style={{ 
+                            padding: '4px 8px', 
+                            fontSize: '11px', 
+                            borderColor: isHope ? 'var(--text-gold)' : 'var(--border-color)',
+                            background: isHope ? 'var(--badge-bg)' : 'transparent',
+                            color: isHope ? 'var(--text-gold)' : 'var(--text-primary)',
+                            fontWeight: isHope ? 'bold' : 'normal'
+                          }} 
+                          onClick={() => setKeeperProfile(prev => ({ ...prev, hopeWord: w }))}
+                        >
+                          희망: {w}
+                        </button>
+                      )}
+                      {activePlaybook.misconceptionQuestion && (
+                        <button 
+                          className="stellar-btn-outline" 
+                          style={{ 
+                            padding: '4px 8px', 
+                            fontSize: '11px', 
+                            borderColor: isMisconception ? 'var(--text-gold)' : 'var(--border-color)',
+                            background: isMisconception ? 'var(--badge-bg)' : 'transparent',
+                            color: isMisconception ? 'var(--text-gold)' : 'var(--text-primary)',
+                            fontWeight: isMisconception ? 'bold' : 'normal'
+                          }} 
+                          onClick={() => setKeeperProfile(prev => ({ ...prev, misconceptionWord: w }))}
+                        >
+                          오해: {w}
+                        </button>
+                      )}
                     </div>
                   );
                 })}
@@ -1977,19 +2067,56 @@ export default function App() {
 
               {!isShufflingCards && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  <div>
-                    <label style={{ fontSize: '13px', color: 'var(--text-gold)', display: 'block', marginBottom: '6px' }}>
-                      ✍️ 룰북 성찰 가이드 질문에 맞춰 오늘의 최종 회고록을 작성하세요:
-                    </label>
-                    <p style={{ fontSize: '11px', color: 'var(--text-secondary)', marginBottom: '8px' }}>
-                      * 가이드: 오늘 밤 임무 완료 후 어떤 감정이 드시나요? 무언가를 성취해 내셨나요? 갈등을 해결하셨나요? 혹은 등대에 해결되지 않고 남겨진 찜찜한 미완성 잔해가 있나요?
-                    </p>
-                    <textarea 
-                      className="stellar-input" 
-                      value={shiftState.remarks}
-                      onChange={(e) => setShiftState(prev => ({ ...prev, remarks: e.target.value }))}
-                      placeholder="오늘 밤 시프트를 마치며 머릿속에 감도는 상념과 성찰에 대한 마지막 회고 일지 한 페이지를 완성해 보세요..." 
-                    />
+                  <div className="logbook-journal-paper">
+                    <div className="logbook-table">
+                      <div className="logbook-row border-bottom">
+                        <div className="logbook-cell border-right" style={{ flex: 3 }}>
+                          <span className="logbook-label">Keeper Name.</span>
+                          <div className="logbook-value-display">{keeperProfile.name || '무명의 등대지기'}</div>
+                        </div>
+                        <div className="logbook-cell" style={{ flex: 1 }}>
+                          <span className="logbook-label">Keeper No.</span>
+                          <div className="logbook-value-display">{keeperProfile.keeperNo}</div>
+                        </div>
+                      </div>
+                      
+                      <div className="logbook-row border-bottom">
+                        <div className="logbook-cell">
+                          <span className="logbook-text-row">
+                            Observations taken on <strong className="logbook-underline">{shiftState.date || '____-__-__'}</strong> at <strong className="logbook-underline">{shiftState.time || '__:__'}</strong>.
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="logbook-row border-bottom bg-subtle">
+                        <div className="logbook-cell border-right header-cell">Temp.</div>
+                        <div className="logbook-cell border-right header-cell">Winds.</div>
+                        <div className="logbook-cell header-cell">Sights.</div>
+                      </div>
+                      
+                      {(() => {
+                        const activeWeather = WEATHER_PATTERNS.find(w => w.id === shiftState.moodId);
+                        return (
+                          <div className="logbook-row border-bottom">
+                            <div className="logbook-cell border-right value-cell">{activeWeather?.temp || '기온 정보 없음'}</div>
+                            <div className="logbook-cell border-right value-cell">{activeWeather?.winds || '바람 정보 없음'}</div>
+                            <div className="logbook-cell value-cell">{activeWeather?.sights || '풍경 정보 없음'}</div>
+                          </div>
+                        );
+                      })()}
+                      
+                      <div className="logbook-row">
+                        <div className="logbook-cell">
+                          <span className="logbook-label">Remarks.</span>
+                          <textarea 
+                            className="logbook-textarea" 
+                            value={shiftState.remarks}
+                            onChange={(e) => setShiftState(prev => ({ ...prev, remarks: e.target.value }))}
+                            placeholder="오늘 밤 시프트를 마치며 머릿속에 감도는 상념과 성찰에 대한 마지막 회고 일지 한 페이지를 완성해 보세요..." 
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* 등대를 떠나는 영원한 결말 (Leaving the Lighthouse) */}
@@ -2111,80 +2238,89 @@ export default function App() {
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-              {filteredJournals.map((j) => (
-                <div key={j.id} className={`archive-sheet-card ${j.isEndingJournal ? 'ending-sheet' : ''}`}>
-                  
-                  {j.isEndingJournal && (
-                    <div style={{
-                      background: 'linear-gradient(135deg, #b8954a 0%, #d4af37 50%, #b8954a 100%)',
-                      color: '#0a0b10',
-                      padding: '8px 20px',
-                      fontSize: '13px',
-                      fontWeight: 'bold',
-                      textAlign: 'center',
-                      letterSpacing: '0.05em',
-                      textShadow: '0 1px 2px rgba(255,255,255,0.2)'
-                    }}>
-                      🌌 등대를 은퇴한 지기의 영원한 여정 결말록 (Final Departure Ledger)
+              {filteredJournals.map((j) => {
+                const temp = j.temp || (j.weatherDesc && j.weatherDesc.includes("기온: ") ? j.weatherDesc.split("기온: ")[1].split(" |")[0] : "알 수 없음");
+                const winds = j.winds || (j.weatherDesc && j.weatherDesc.includes("바람: ") ? j.weatherDesc.split("바람: ")[1].split(" |")[0] : "알 수 없음");
+                const sights = j.sights || (j.weatherDesc && j.weatherDesc.includes("풍경: ") ? j.weatherDesc.split("풍경: ")[1].split("]")[0] : "알 수 없음");
+
+                return (
+                  <div key={j.id} className={`archive-sheet-card ${j.isEndingJournal ? 'ending-sheet' : ''}`}>
+                    {j.isEndingJournal && (
+                      <div className="ending-ledger-banner">
+                        🌌 등대를 은퇴한 지기의 영원한 여정 결말록 (Final Departure Ledger)
+                      </div>
+                    )}
+                    
+                    <div className="logbook-table">
+                      <div className="logbook-row border-bottom">
+                        <div className="logbook-cell border-right" style={{ flex: 3 }}>
+                          <span className="logbook-label">Keeper Name.</span>
+                          <div className="logbook-value-display">
+                            {j.keeperName} <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>({j.playbookName})</span>
+                          </div>
+                        </div>
+                        <div className="logbook-cell" style={{ flex: 1 }}>
+                          <span className="logbook-label">Keeper No.</span>
+                          <div className="logbook-value-display">{j.keeperNo}</div>
+                        </div>
+                      </div>
+                      
+                      <div className="logbook-row border-bottom">
+                        <div className="logbook-cell" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span className="logbook-text-row">
+                            Observations taken on <strong className="logbook-underline">{j.date}</strong> at <strong className="logbook-underline">{j.time}</strong>.
+                          </span>
+                          <button 
+                            onClick={() => deleteJournal(j.id)}
+                            style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', display: 'inline-flex', padding: '4px' }}
+                            title="일지 영구 폐기"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div className="logbook-row border-bottom bg-subtle">
+                        <div className="logbook-cell border-right header-cell">Temp.</div>
+                        <div className="logbook-cell border-right header-cell">Winds.</div>
+                        <div className="logbook-cell header-cell">Sights.</div>
+                      </div>
+                      
+                      <div className="logbook-row border-bottom">
+                        <div className="logbook-cell border-right value-cell">{temp}</div>
+                        <div className="logbook-cell border-right value-cell">{winds}</div>
+                        <div className="logbook-cell value-cell">{sights}</div>
+                      </div>
+
+                      <div className="logbook-row border-bottom bg-subtle">
+                        <div className="logbook-cell header-cell" style={{ textAlign: 'left', paddingLeft: '14px' }}>
+                          Duties & Happenings.
+                        </div>
+                      </div>
+
+                      <div className="logbook-row border-bottom">
+                        <div className="logbook-cell value-cell" style={{ textAlign: 'left', padding: '14px', whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '13px' }}>
+                          <div style={{ color: 'var(--text-primary)' }}>{j.dutiesLog}</div>
+                          {j.seasonEffect && j.seasonEffect !== "일반 평온기" && (
+                            <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px dashed var(--section-border)', color: 'var(--text-gold)', fontWeight: 'bold' }}>
+                              🍂 성간 기후 대이변: {j.seasonEffect}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="logbook-row">
+                        <div className="logbook-cell" style={{ textAlign: 'left' }}>
+                          <span className="logbook-label">Remarks.</span>
+                          <div className="logbook-remarks-display">
+                            {j.remarks}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  )}
-
-                  <div className="archive-sheet-header">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '13px', fontStyle: 'italic', color: 'var(--text-gold)', fontWeight: 'bold' }}>
-                        우주 등대지기 연맹 자산 대장록
-                      </span>
-                      <button 
-                        onClick={() => deleteJournal(j.id)}
-                        style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer' }}
-                        title="일지 영구 폐기"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
                   </div>
-
-                  <div className="archive-sheet-row">
-                    <div className="archive-sheet-cell label">관측 기록 일시</div>
-                    <div className="archive-sheet-cell value">{j.date} at {j.time}</div>
-                  </div>
-
-                  <div className="archive-sheet-row">
-                    <div className="archive-sheet-cell label">등대지기 신원</div>
-                    <div className="archive-sheet-cell value">고유번호 No. {j.keeperNo} | {j.keeperName} ({j.playbookName}) {j.isEndingJournal ? " [은퇴함]" : ""}</div>
-                  </div>
-
-                  <div className="archive-sheet-row">
-                    <div className="archive-sheet-cell label">당시 기후 환경</div>
-                    <div className="archive-sheet-cell value">
-                      <strong>{j.weather}</strong>
-                      <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>
-                        {j.weatherDesc}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="archive-sheet-row">
-                    <div className="archive-sheet-cell label">성간 기후 대이변</div>
-                    <div className="archive-sheet-cell value">{j.seasonEffect}</div>
-                  </div>
-
-                  <div className="archive-sheet-row">
-                    <div className="archive-sheet-cell label">밤의 시프트 임무 기록</div>
-                    <div className="archive-sheet-cell value" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '13px' }}>
-                      {j.dutiesLog}
-                    </div>
-                  </div>
-
-                  <div style={{ background: 'var(--subtle-bg)', borderTop: '2px solid var(--border-color)', padding: '6px 20px', fontSize: '12px', fontWeight: '700', color: 'var(--text-gold)' }}>
-                    최종 사후 성찰 및 일과
-                  </div>
-                  <div className="archive-sheet-remarks">
-                    {j.remarks}
-                  </div>
-
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
 
