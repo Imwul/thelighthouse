@@ -69,10 +69,8 @@ const InboxDownloadIcon = () => (
 );
 
 export default function App() {
-  // 테마 상태 ('midnight' = 어두운 우주 보이드, 'parchment' = 양모 크림)
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('lighthouse_theme') || 'parchment';
-  });
+  // 테마 상태 (을유1945 크림/네이비 룰북 단일 테마)
+  const theme = 'parchment';
 
   // 탭 상태 네비게이션
   const [activeTab, setActiveTab] = useState('character');
@@ -196,11 +194,8 @@ export default function App() {
   useEffect(() => {
     const body = document.body;
     body.className = '';
-    if (theme === 'parchment') {
-      body.classList.add('theme-light-parchment');
-    }
-    localStorage.setItem('lighthouse_theme', theme);
-  }, [theme]);
+    body.classList.add('theme-light-parchment');
+  }, []);
 
   // 계정 리스너
   useEffect(() => {
@@ -1157,15 +1152,7 @@ export default function App() {
               </div>
             )}
             
-            {/* 색상 대비 변경 토글 버튼 */}
-            <button 
-              className="stellar-btn-outline" 
-              onClick={() => setTheme(prev => prev === 'midnight' ? 'parchment' : 'midnight')}
-              style={{ width: '38px', height: '38px', padding: 0, borderRadius: '50%' }}
-              title="색상 대비 변경"
-            >
-              {theme === 'midnight' ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
+
           </div>
         </div>
 
