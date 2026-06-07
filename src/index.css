@@ -700,63 +700,42 @@ body.theme-light-parchment .stellar-coin-face.tails-face {
 
 .lighthouse-illustration {
   position: relative;
-  width: 60px;
-  height: 60px;
-  background: rgba(17, 24, 39, 0.8);
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
+  width: 70px;
+  height: 84px;
+  border-radius: 8px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.lighthouse-tower-art {
-  width: 24px;
-  height: 38px;
-  z-index: 2;
-  color: var(--text-gold);
+.lighthouse-illustration:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
-.lighthouse-beam-left, .lighthouse-beam-right {
-  position: absolute;
-  top: 15px;
-  width: 80px;
-  height: 25px;
-  background: linear-gradient(to right, rgba(223, 183, 108, 0.4) 0%, rgba(223, 183, 108, 0) 100%);
-  z-index: 1;
-  pointer-events: none;
-  border-radius: 50%;
-  filter: blur(2px);
+/* 펄스 애니메이션 (등대 불빛이 호흡하듯 반짝임) */
+@keyframes lighthouseGlowPulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
 }
 
-.lighthouse-beam-left {
-  right: 30px;
-  transform-origin: right center;
-  animation: lighthouseRotateBeam 8s linear infinite;
+@keyframes lighthouseBeamPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.85; }
 }
 
-.lighthouse-beam-right {
-  left: 30px;
-  transform-origin: left center;
-  background: linear-gradient(to left, rgba(223, 183, 108, 0.4) 0%, rgba(223, 183, 108, 0) 100%);
-  animation: lighthouseRotateBeamOpposite 8s linear infinite;
+.lighthouse-glow-pulse {
+  animation: lighthouseGlowPulse 4s ease-in-out infinite;
+  transform-origin: 50px 35px;
 }
 
-@keyframes lighthouseRotateBeam {
-  0% { transform: rotate(0deg); opacity: 0.1; }
-  25% { transform: rotate(90deg); opacity: 0.8; }
-  50% { transform: rotate(180deg); opacity: 0.1; }
-  75% { transform: rotate(270deg); opacity: 0.8; }
-  100% { transform: rotate(360deg); opacity: 0.1; }
-}
-
-@keyframes lighthouseRotateBeamOpposite {
-  0% { transform: rotate(180deg); opacity: 0.1; }
-  25% { transform: rotate(270deg); opacity: 0.8; }
-  50% { transform: rotate(360deg); opacity: 0.1; }
-  75% { transform: rotate(450deg); opacity: 0.8; }
-  100% { transform: rotate(540deg); opacity: 0.1; }
+.lighthouse-beam-pulse {
+  animation: lighthouseBeamPulse 4s ease-in-out infinite;
+  transform-origin: 50px 35px;
 }
 
 /* Archive Sheet styling matching PDF */

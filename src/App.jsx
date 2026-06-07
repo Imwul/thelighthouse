@@ -1069,9 +1069,118 @@ export default function App() {
           {/* 등대 회전 빔 헤더 로고 */}
           <div className="lighthouse-header-container" onClick={() => setActiveTab('character')} style={{ cursor: 'pointer' }}>
             <div className="lighthouse-illustration">
-              <Compass className="lighthouse-tower-art" />
-              <div className="lighthouse-beam-left" />
-              <div className="lighthouse-beam-right" />
+              <svg width="100%" height="100%" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  {/* 배경 그라데이션 */}
+                  <linearGradient id="bgGrad" x1="50" y1="0" x2="50" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#162e5c" />
+                    <stop offset="100%" stopColor="#0a152d" />
+                  </linearGradient>
+                  {/* 왼쪽 광선 그라데이션 */}
+                  <linearGradient id="beamGradLeft" x1="50" y1="35" x2="0" y2="35" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.65" />
+                    <stop offset="35%" stopColor="#e3efff" stopOpacity="0.35" />
+                    <stop offset="100%" stopColor="#e3efff" stopOpacity="0" />
+                  </linearGradient>
+                  {/* 오른쪽 광선 그라데이션 */}
+                  <linearGradient id="beamGradRight" x1="50" y1="35" x2="100" y2="35" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.65" />
+                    <stop offset="35%" stopColor="#e3efff" stopOpacity="0.35" />
+                    <stop offset="100%" stopColor="#e3efff" stopOpacity="0" />
+                  </linearGradient>
+                  {/* 등대 광원 방사형 그라데이션 */}
+                  <radialGradient id="radialGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+                    <stop offset="25%" stopColor="#fff6d1" stopOpacity="0.95" />
+                    <stop offset="60%" stopColor="#ffdb7d" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#ffdb7d" stopOpacity="0" />
+                  </radialGradient>
+                  {/* 등대 몸체 음영 그라데이션 */}
+                  <linearGradient id="towerGrad" x1="38" y1="75" x2="62" y2="75" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#ffffff" />
+                    <stop offset="70%" stopColor="#f0f4fc" />
+                    <stop offset="100%" stopColor="#cbdcf7" />
+                  </linearGradient>
+                  {/* 지붕 음영 그라데이션 */}
+                  <linearGradient id="roofGrad" x1="42.5" y1="25" x2="57.5" y2="25" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#6692db" />
+                    <stop offset="100%" stopColor="#3b61a3" />
+                  </linearGradient>
+                </defs>
+
+                {/* 밤하늘 배경 */}
+                <rect width="100%" height="100%" rx="8" fill="url(#bgGrad)" />
+
+                {/* 밤하늘 별들 */}
+                <circle cx="20" cy="22" r="0.8" fill="#ffffff" opacity="0.9" />
+                <circle cx="80" cy="28" r="1.1" fill="#ffffff" opacity="0.75" />
+                <circle cx="24" cy="52" r="0.6" fill="#ffffff" opacity="0.9" />
+                <circle cx="78" cy="68" r="0.9" fill="#ffffff" opacity="0.8" />
+                <circle cx="18" cy="88" r="0.7" fill="#ffffff" opacity="0.6" />
+                <circle cx="84" cy="92" r="1" fill="#ffffff" opacity="0.85" />
+                <circle cx="32" cy="35" r="0.5" fill="#ffffff" opacity="0.5" />
+                <circle cx="70" cy="48" r="0.8" fill="#ffffff" opacity="0.7" />
+
+                {/* 좌측 하단 8각 별 */}
+                <g transform="translate(24, 100) scale(0.65)">
+                  <path d="M 0,-5 L 1,-1 L 5,0 L 1,1 L 0,5 L -1,1 L -5,0 L -1,-1 Z" fill="#ffffff" opacity="0.8" />
+                  <path d="M 0,-5 L 1,-1 L 5,0 L 1,1 L 0,5 L -1,1 L -5,0 L -1,-1 Z" fill="#ffffff" opacity="0.8" transform="rotate(45)" />
+                </g>
+
+                {/* 우측 상단 8각 별 */}
+                <g transform="translate(76, 18) scale(0.5)">
+                  <path d="M 0,-5 L 1,-1 L 5,0 L 1,1 L 0,5 L -1,1 L -5,0 L -1,-1 Z" fill="#ffffff" opacity="0.7" />
+                  <path d="M 0,-5 L 1,-1 L 5,0 L 1,1 L 0,5 L -1,1 L -5,0 L -1,-1 Z" fill="#ffffff" opacity="0.7" transform="rotate(45)" />
+                </g>
+
+                {/* 룰북 스타일의 더블 테두리 선 */}
+                <rect x="6" y="6" width="88" height="108" rx="4" fill="none" stroke="#7da1d9" strokeWidth="1.2" opacity="0.8" />
+                <rect x="9" y="9" width="82" height="102" rx="2" fill="none" stroke="#7da1d9" strokeWidth="0.6" opacity="0.8" />
+
+                {/* 등대 빛 광원 (빛나는 펄스 애니메이션 포함) */}
+                <circle cx="50" cy="35" r="15" fill="url(#radialGlow)" className="lighthouse-glow-pulse" />
+
+                {/* 등대 좌우 광선 빔 */}
+                <polygon points="50,35 0,10 0,60" fill="url(#beamGradLeft)" opacity="0.7" className="lighthouse-beam-pulse" />
+                <polygon points="50,35 100,10 100,60" fill="url(#beamGradRight)" opacity="0.7" className="lighthouse-beam-pulse" />
+
+                {/* 등대 몸체 */}
+                <polygon points="38,108 45,42 55,42 62,108" fill="url(#towerGrad)" stroke="#0d2350" strokeWidth="1.5" />
+
+                {/* 등대 몸체 내부 창문 */}
+                <rect x="48.5" y="60" width="3" height="6" rx="1.5" fill="#0d2350" />
+                <rect x="48.5" y="82" width="3" height="6" rx="1.5" fill="#0d2350" />
+
+                {/* 등대 발코니 슬랩 */}
+                <rect x="42" y="41.5" width="16" height="3" rx="0.5" fill="#0d2350" />
+                
+                {/* 등대 발코니 난간/펜스 */}
+                <line x1="43" y1="38" x2="57" y2="38" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="44" y1="38" x2="44" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="47" y1="38" x2="47" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="50" y1="38" x2="50" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="53" y1="38" x2="53" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="56" y1="38" x2="56" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+
+                {/* 등대 광원실 창문 격자(Grid) */}
+                <rect x="45" y="30.5" width="10" height="11" fill="none" stroke="#0d2350" strokeWidth="1.5" />
+                <line x1="47.5" y1="30.5" x2="47.5" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="50" y1="30.5" x2="50" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="52.5" y1="30.5" x2="52.5" y2="41.5" stroke="#0d2350" strokeWidth="0.8" />
+                <line x1="45" y1="36" x2="55" y2="36" stroke="#0d2350" strokeWidth="0.8" />
+
+                {/* 지붕 */}
+                <path d="M 42.5 30.5 C 42.5 30.5, 50 28.5, 57.5 30.5 L 50 19 Z" fill="url(#roofGrad)" stroke="#0d2350" strokeWidth="1.5" />
+
+                {/* 핀/첨탑 */}
+                <line x1="50" y1="19" x2="50" y2="12" stroke="#0d2350" strokeWidth="1.2" />
+
+                {/* 등대 꼭대기 8각 별 문양 */}
+                <g transform="translate(50, 12) scale(0.9)">
+                  <path d="M 0,-6 L 1.3,-1.3 L 6,0 L 1.3,1.3 L 0,6 L -1.3,1.3 L -6,0 L -1.3,-1.3 Z" fill="#ffffff" stroke="#0d2350" strokeWidth="0.6" />
+                  <path d="M 0,-6 L 1.3,-1.3 L 6,0 L 1.3,1.3 L 0,6 L -1.3,1.3 L -6,0 L -1.3,-1.3 Z" fill="#ffffff" stroke="#0d2350" strokeWidth="0.6" transform="rotate(45)" />
+                </g>
+              </svg>
             </div>
             <div>
               <h1 className="serif-font" style={{ fontSize: '26px', color: 'var(--text-gold)', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '6px' }}>
