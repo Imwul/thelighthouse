@@ -1616,10 +1616,10 @@ export default function App() {
             </div>
 
             <div style={{ borderTop: '1px solid rgba(223, 183, 108, 0.2)', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <div style={{ fontSize: '13px' }}>
+              <div style={{ fontSize: '15px' }}>
                 <strong style={{ color: '#ef4444' }}>⚠️ 취약 작업:</strong> {activePlaybook.struggles}
               </div>
-              <div style={{ fontSize: '13px' }}>
+              <div style={{ fontSize: '15px' }}>
                 <strong style={{ color: 'var(--accent-cyan)' }}>🌟 강점 작업:</strong> {activePlaybook.excels}
               </div>
             </div>
