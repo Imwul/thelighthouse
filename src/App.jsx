@@ -2754,7 +2754,7 @@ export default function App() {
                     * 룰북 발췌: 등대 탑 보급 서랍장 깊은 구석에서 발견된, 수천 년간 이곳을 스쳐 지나갔던 이전 지기들의 생생하고도 애달픈 모험의 파편들입니다. 작업 시 풍부한 영감을 돋워 줍니다.
                   </p>
                   {PAST_KEEPERS_LOGS.map((log, idx) => (
-                    <div key={idx} style={{ padding: '16px', background: 'rgba(3, 7, 18, 0.4)', border: '1px solid rgba(223, 183, 108, 0.2)', borderRadius: '6px' }}>
+                    <div key={idx} style={{ padding: '16px', background: 'var(--card-bg-dark)', border: '1px solid var(--section-border)', borderRadius: '6px' }}>
                       <strong style={{ color: 'var(--text-gold)', fontSize: '13px', display: 'block', marginBottom: '6px' }}>
                         {log.keeper}
                       </strong>
@@ -2770,7 +2770,7 @@ export default function App() {
                     * 룰북 발췌: 우주 해안선에 좌우되는 등대의 지기 직무 교본에 등재된, 우주 세계관의 기이한 선박, 기상 현상, 등대 장비 용어들을 수록한 해설 사전입니다.
                   </p>
                   {Object.entries(GLOSSARY).map(([term, desc], idx) => (
-                    <div key={idx} style={{ padding: '14px', background: 'rgba(3, 7, 18, 0.4)', border: '1px solid rgba(56, 189, 248, 0.2)', borderRadius: '6px' }}>
+                    <div key={idx} style={{ padding: '14px', background: 'var(--card-bg-dark)', border: '1px solid var(--section-border)', borderRadius: '6px' }}>
                       <strong style={{ color: 'var(--accent-cyan)', fontSize: '13px', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
                         {term}
                       </strong>

@@ -220,6 +220,7 @@ body.theme-light-parchment .helper-box.cyan-accent {
   padding: 10px 14px;
   font-size: 15px !important;
   line-height: 1.6;
+  height: 46px;
   outline: none;
   backdrop-filter: blur(4px);
   transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
@@ -233,6 +234,7 @@ body.theme-light-parchment .helper-box.cyan-accent {
 textarea.stellar-input {
   resize: vertical;
   min-height: 110px;
+  height: auto;
 }
 
 /* Beautiful Custom Select */
@@ -244,6 +246,8 @@ textarea.stellar-input {
   border-radius: 6px;
   padding: 10px 14px;
   font-size: 15px !important;
+  height: 46px;
+  line-height: 1.6;
   outline: none;
   cursor: pointer;
   transition: border-color var(--transition-speed);
