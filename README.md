@@ -1,16 +1,57 @@
-# React + Vite
+# 우주 끝의 등대
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ella Lim / LostWays Club의 **The Lighthouse At The Edge Of The Universe — Complete Edition**을 위한 한국어 개인 플레이 도구입니다. 제공된 룰북과 Logbook Journal을 기준으로 시작 → 임무 판정·자유 해석·기록 반복 → 자율 마무리를 지원합니다. 앱의 설명은 한국어 요약이며 원문을 대체하지 않습니다.
 
-Currently, two official plugins are available:
+## 플레이
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **오늘 밤**: 날짜·시간과 감정/날씨를 기록하고, 앞면 동전과 적색 카드가 같은 시도에 나오면 점등합니다. 태엽을 별도로 감은 뒤 관측·정비·사건을 자유롭게 반복합니다.
+- 판정 의미, 글쓰기, 관련 규칙을 한 화면에 둡니다. 예시와 플레이북의 서사 단서는 펼쳐서 참고합니다. 글의 길이나 임무 횟수에 제한이 없습니다.
+- 원할 때 소등하고 밤의 분위기에 맞게 덱을 1–4회 섞은 뒤 일지에 보관합니다. 사건 4·9·K의 재점등·이른 마무리·밤 다시 시작도 지원합니다.
+- **일지**에서 과거 기록을 검색하고, **규칙 찾기**에서 절차·표·용어·예시 일지를 조회합니다. 각 규칙에 원문의 인쇄 쪽수를 표시합니다.
+- 해변 수색, 소지품, 빛과의 대화, 계절은 선택 도구입니다. 데스크톱의 곁에 두는 도구 또는 모바일 하단의 도구 메뉴에서 엽니다.
+- 기본은 디지털 52장 덱입니다. 설정에서 실제 카드·동전·주사위의 결과를 직접 입력할 수 있습니다. 디지털 덱이 소진될 때 다시 섞는 처리는 앱의 편의 처리이며 안내합니다. 해변 수색은 필요한 카드 묶음을 시작할 때 미리 예약합니다.
 
-## React Compiler
+## 실행과 검사
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Node.js와 npm이 필요합니다.
 
-## Expanding the ESLint configuration
+```sh
+npm ci
+npm run dev
+npm test
+npm run lint
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+브라우저 검사는 별도로 실행 중인 앱을 사용합니다. 처음 한 번 Chromium을 설치하고, 다른 터미널에서 실행합니다.
+
+```sh
+npx playwright install chromium
+LIGHTHOUSE_URL=http://127.0.0.1:5173 npm run test:browser
+```
+
+이미 설치된 Chromium은 `LIGHTHOUSE_CHROMIUM`에 실행 파일 경로를 지정해 사용할 수 있습니다. `LIGHTHOUSE_SCREENSHOTS`로 화면 캡처 폴더를 지정할 수 있습니다(기본 `/tmp/lighthouse-browser`). 검사는 별도 브라우저 컨텍스트의 가상 기록을 사용하며 실제 사용자의 저장소를 바꾸지 않습니다.
+
+## 저장과 복원
+
+로그인 없이 브라우저 `localStorage`에 진행 중인 밤, 미완성 글, 덱, 일지와 선택 도구 상태를 저장합니다. 기존 `lighthouse_*` 키와 구형 일지 배열 백업을 읽습니다. 잘못된 저장 데이터는 원본을 `*_unreadable_backup` 또는 `*_original_backup` 키에 보존하고 안전한 기본 상태로 복구합니다.
+
+보관 및 설정에서 전체 JSON 백업을 내려받을 수 있습니다. 복원 파일은 먼저 검증하며, 전체 복원 전에 현재 상태를 자동으로 백업합니다. 구형 일지만 가져올 때는 다른 상태를 비우지 않습니다. Google 계정 연결 및 Firestore 백업은 사용자가 직접 올리기·복원을 실행하는 방식입니다. 클라우드 모듈은 설정을 열 때 불러옵니다.
+
+## 구조와 검토 근거
+
+- `src/App.jsx`: 플레이 흐름·규칙 열람·선택 도구·저장 UI.
+- `src/game.js`: 덱·판정·계절·데이터 전환·백업 검증.
+- `src/constants.js`: 룰북을 대조한 한국어 규칙 데이터.
+- `src/index.css`: 종이/밤 테마와 모바일·데스크톱 레이아웃.
+- `tests/game.test.js`: 규칙과 데이터 연속성 검사.
+- `tests/browser.cjs`: 실제 UI 과제 시나리오.
+- `_bmad-output/`: 전체 원문 독립 검토, BMAD Design Thinking·Problem Solving, 최종 검증 기록.
+
+실제 참가자의 읽기 속도·몰입도와 Google 로그인·클라우드 왕복은 이번 로컬 검증에 포함하지 않았습니다. 실행 결과와 화면 근거는 `_bmad-output/verification-2026-10-08.md`에 기록합니다.
+
+## 표지 기반 시각 디자인
+
+룰북 표지의 짙은 청색과 은빛 등대·광선·별을 SVG/CSS로 반영했습니다. 기록 면은 밝은 종이/밤 테마를 지원하며, UI 제목·안내는 기능 중심으로 표현합니다. 3440px에서도 작업 공간은1420px, 기록 영역은약880px로 제한하고 외곽의 별·궤도를 넓게 보여줍니다. 320px 날짜·시간 입력은 한 열로 표시합니다.
+
+[BMAD 디자인 씽킹](./_bmad-output/design-thinking-lighthouse-cover-mood-2026-10-08.md)과 [독립 화면 검증](./_bmad-output/ui-cover-audit-2026-10-08.md)에 선택 근거와320·390·768·1440·3440px의 검증 결과를 기록했습니다.

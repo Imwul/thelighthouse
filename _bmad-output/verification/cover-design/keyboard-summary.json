@@ -1,0 +1,322 @@
+[
+  {
+    "width": 320,
+    "theme": "paper",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "theme": "night",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "theme": "paper",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "theme": "night",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "theme": "paper",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "theme": "night",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "theme": "paper",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "theme": "night",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 3440,
+    "theme": "paper",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 3440,
+    "theme": "night",
+    "failures": [],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  }
+]

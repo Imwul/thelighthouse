@@ -1,0 +1,236 @@
+[
+  {
+    "width": 320,
+    "initialState": {
+      "scrollY": 0,
+      "active": "H2",
+      "activeText": "무언가 돌봄을 필요로 합니다",
+      "visibleNav": [
+        "오늘 밤",
+        "일지",
+        "규칙 찾기",
+        "도구"
+      ]
+    }
+  },
+  {
+    "width": 320,
+    "pageOverflow": {
+      "scroll": 320,
+      "viewport": 320
+    },
+    "mainNav": [
+      "오늘 밤",
+      "일지",
+      "규칙 찾기",
+      "도구"
+    ],
+    "errors": []
+  },
+  {
+    "width": 320,
+    "tabInside": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "toolSheet": "곁에 두는 도구",
+    "dialogOverflow": {
+      "scroll": 319,
+      "client": 319
+    },
+    "focusAtOpen": "판정 도구 · 백업 · 화면"
+  },
+  {
+    "width": 320,
+    "focusAfterEscape": {
+      "tag": "BUTTON",
+      "text": "도구",
+      "aria": null
+    },
+    "errors": []
+  },
+  {
+    "width": 320,
+    "darkTheme": "night",
+    "errors": []
+  },
+  {
+    "width": 390,
+    "initialState": {
+      "scrollY": 0,
+      "active": "H2",
+      "activeText": "무언가 돌봄을 필요로 합니다",
+      "visibleNav": [
+        "오늘 밤",
+        "일지",
+        "규칙 찾기",
+        "도구"
+      ]
+    }
+  },
+  {
+    "width": 390,
+    "pageOverflow": {
+      "scroll": 390,
+      "viewport": 390
+    },
+    "mainNav": [
+      "오늘 밤",
+      "일지",
+      "규칙 찾기",
+      "도구"
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "tabInside": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "toolSheet": "곁에 두는 도구",
+    "dialogOverflow": {
+      "scroll": 389,
+      "client": 389
+    },
+    "focusAtOpen": "판정 도구 · 백업 · 화면"
+  },
+  {
+    "width": 390,
+    "focusAfterEscape": {
+      "tag": "BUTTON",
+      "text": "도구",
+      "aria": null
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "darkTheme": "night",
+    "errors": []
+  },
+  {
+    "width": 768,
+    "initialState": {
+      "scrollY": 0,
+      "active": "H2",
+      "activeText": "무언가 돌봄을 필요로 합니다",
+      "visibleNav": [
+        "오늘 밤",
+        "일지",
+        "규칙 찾기"
+      ]
+    }
+  },
+  {
+    "width": 768,
+    "pageOverflow": {
+      "scroll": 768,
+      "viewport": 768
+    },
+    "mainNav": [
+      "오늘 밤",
+      "일지",
+      "규칙 찾기",
+      "도구"
+    ],
+    "errors": []
+  },
+  {
+    "width": 768,
+    "tabInside": [
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ],
+    "toolSheet": "해변 수색",
+    "dialogOverflow": {
+      "scroll": 589,
+      "client": 589
+    },
+    "focusAtOpen": "규칙 p.52–55"
+  },
+  {
+    "width": 768,
+    "focusAfterEscape": {
+      "tag": "BUTTON",
+      "text": "해변 수색발견하고 보관하기",
+      "aria": null
+    },
+    "errors": []
+  },
+  {
+    "width": 768,
+    "darkTheme": "night",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "initialState": {
+      "scrollY": 0,
+      "active": "H2",
+      "activeText": "무언가 돌봄을 필요로 합니다",
+      "visibleNav": [
+        "오늘 밤",
+        "일지",
+        "규칙 찾기"
+      ]
+    }
+  },
+  {
+    "width": 1440,
+    "pageOverflow": {
+      "scroll": 1440,
+      "viewport": 1440
+    },
+    "mainNav": [
+      "오늘 밤",
+      "일지",
+      "규칙 찾기",
+      "도구"
+    ],
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "tabInside": [
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ],
+    "toolSheet": "해변 수색",
+    "dialogOverflow": {
+      "scroll": 589,
+      "client": 589
+    },
+    "focusAtOpen": "규칙 p.52–55"
+  },
+  {
+    "width": 1440,
+    "focusAfterEscape": {
+      "tag": "BUTTON",
+      "text": "해변 수색발견하고 보관하기",
+      "aria": null
+    },
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "darkTheme": "night",
+    "errors": []
+  }
+]

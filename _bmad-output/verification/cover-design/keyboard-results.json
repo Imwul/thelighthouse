@@ -1,0 +1,2742 @@
+[
+  {
+    "width": 320,
+    "theme": "paper",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "theme": "night",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 76,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "theme": "paper",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "theme": "night",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 93.5,
+        "height": 63,
+        "visible": true
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "theme": "paper",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "theme": "night",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "theme": "paper",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "theme": "night",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 3440,
+    "theme": "paper",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "밤 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  },
+  {
+    "width": 3440,
+    "theme": "night",
+    "failures": [],
+    "sequence": [
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BODY",
+        "label": "본문으로 바로가기우주 끝의 등대AT THE EDGE OF THE UNIV",
+        "inside": false,
+        "focusVisible": false
+      },
+      {
+        "tag": "BUTTON",
+        "label": "Google 계정 연결",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "INPUT",
+        "label": "",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "전체 백업 내려받기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "실제 도구 결과 입력",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "앱에서 뽑기",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "종이 화면",
+        "inside": true,
+        "focusVisible": true
+      },
+      {
+        "tag": "BUTTON",
+        "label": "패널 닫기",
+        "inside": true,
+        "focusVisible": true
+      }
+    ],
+    "restore": "보관 및 설정",
+    "nav": [
+      {
+        "label": "오늘 밤",
+        "width": 70.546875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "일지",
+        "width": 55.21875,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "규칙 찾기",
+        "width": 82.9375,
+        "height": 63,
+        "visible": true
+      },
+      {
+        "label": "도구",
+        "width": 0,
+        "height": 0,
+        "visible": false
+      }
+    ]
+  }
+]

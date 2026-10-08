@@ -1,0 +1,12 @@
+[
+  {
+    "theme": "paper",
+    "ruleWidth": 940,
+    "ruleTextWidth": 862
+  },
+  {
+    "theme": "night",
+    "ruleWidth": 940,
+    "ruleTextWidth": 862
+  }
+]
