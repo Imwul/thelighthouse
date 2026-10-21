@@ -642,6 +642,114 @@ async function pendingEvent(p, value) {
       );
     },
   );
+  await run("legacy records remain independently editable and deletable", async (p) => {
+    await seed(p, {
+      lighthouse_current_shift: standard,
+      lighthouse_journals: [
+        { weather: "첫 번째 밤", remarks: "첫 기록" },
+        { weather: "두 번째 밤", remarks: "둘째 기록" },
+      ],
+      lighthouse_inventory: [{ type: "나침반" }, { type: "망원경" }],
+      lighthouse_light_conversations: [{ question: "첫 질문" }, { question: "둘째 질문" }],
+    });
+    await press(p, "일지");
+    await p.locator(".journal-summary").first().click();
+    assert.equal(await p.locator(".journal-body").count(), 1);
+    p.on("dialog", (dialog) => dialog.accept());
+    await press(p, "삭제");
+    assert.equal(await p.locator(".journal-summary").count(), 1);
+    assert.match(await p.locator(".journal-summary").innerText(), /두 번째 밤/);
+    await press(p, "오늘 밤");
+    await p.getByRole("button", { name: /^소지품/ }).click();
+    await p.getByRole("button", { name: "버리기", exact: true }).first().click();
+    assert.equal(await p.locator(".inventory-item").count(), 1);
+    assert.match(await p.locator(".inventory-item").innerText(), /망원경/);
+    await close(p);
+    await p.getByRole("button", { name: /어둠 속의 빛.*밤마다/ }).click();
+    await p.getByLabel("내가 해석한 응답", { exact: true }).first().fill("첫 응답만 수정");
+    assert.equal(await p.getByLabel("내가 해석한 응답", { exact: true }).nth(1).inputValue(), "");
+    await p.reload();
+    const entries = await p.evaluate(() => JSON.parse(localStorage.getItem("lighthouse_light_conversations")));
+    assert.equal(entries[0].interpretation, "첫 응답만 수정");
+    assert.equal(entries[1].interpretation, undefined);
+  });
+  await run("storage quota failure preserves readable writing and offers an export", async (p) => {
+    const raw = { ...standard, pendingDuty: { type: "observation", details: "우주", userLog: "저장 실패에도 남겨야 할 문장" } };
+    await seed(p, { lighthouse_current_shift: raw, lighthouse_inventory: [{ type: "오래된 나침반" }] });
+    // Reintroduce a readable legacy shape that needs normalization, then prohibit writes on boot.
+    await p.evaluate((value) => localStorage.setItem("lighthouse_current_shift", JSON.stringify(value)), raw);
+    await p.addInitScript(() => {
+      Storage.prototype.setItem = function () { throw new DOMException("Storage full", "QuotaExceededError"); };
+    });
+    await p.reload();
+    assert.equal(await p.getByLabel("임무 기록", { exact: true }).inputValue(), raw.pendingDuty.userLog);
+    await p.getByRole("alert").waitFor();
+    assert.match(await p.getByRole("alert").innerText(), /파일 백업/);
+    await p.getByLabel("임무 기록", { exact: true }).fill("메모리에서 계속 쓰는 문장");
+    await press(p, "보관 및 설정");
+    const downloadEvent = p.waitForEvent("download");
+    await press(p, "전체 백업 내려받기");
+    const download = await downloadEvent;
+    const backup = JSON.parse(await fs.readFile(await download.path(), "utf8"));
+    assert.equal(backup.shiftState.pendingDuty.userLog, "메모리에서 계속 쓰는 문장");
+    assert.equal((await readShift(p)).pendingDuty.userLog, raw.pendingDuty.userLog, "disk original stays intact");
+  });
+  await run("body search, normalized queries, and recoverable empty search states", async (p) => {
+    await seed(p, { lighthouse_journals: [{ id: "night", weather: "차갑고 맑은 밤", remarks: "밝은 고리를 보았다." }] });
+    await press(p, "규칙 찾기");
+    await p.getByLabel("규칙 검색", { exact: true }).fill("   팔을   뻗으면  ");
+    assert.equal(await p.locator(".rule-section").count(), 1);
+    assert.equal(await p.locator(".rule-section h2").innerText(), "관측");
+    await p.getByLabel("규칙 검색", { exact: true }).fill("존재하지않는규칙");
+    assert.match(await p.getByRole("status").innerText(), /찾는 규칙이 없습니다/);
+    await press(p, "검색 지우기");
+    await press(p, "일지");
+    await p.getByLabel("일지 검색", { exact: true }).fill("    밝은   고리  ");
+    assert.equal(await p.locator(".journal-summary").count(), 1);
+    await p.getByLabel("일지 검색", { exact: true }).fill("존재하지않는기록");
+    assert.match(await p.getByRole("status").innerText(), /일치하는 일지가 없습니다/);
+    await press(p, "검색 지우고 전체 일지 보기");
+    assert.equal(await p.locator(".journal-summary").count(), 1);
+    assert.equal(await p.getByLabel("일지 검색", { exact: true }).inputValue(), "");
+  });
+  await run("tool references return to preserved drafts and switching draw modes cancels stale input", async (p) => {
+    await seed(p, { lighthouse_current_shift: standard, lighthouse_draw_mode: '"physical"' });
+    await p.getByRole("button", { name: /어둠 속의 빛.*밤마다/ }).click();
+    await p.getByLabel("빛에게 물을 질문", { exact: true }).fill("쓰던 질문으로 돌아오기");
+    await p.getByRole("button", { name: "규칙 p.56–57", exact: true }).click();
+    await press(p, "어둠 속의 빛으로 돌아가기");
+    assert.equal(await p.getByLabel("빛에게 물을 질문", { exact: true }).inputValue(), "쓰던 질문으로 돌아오기");
+    await p.keyboard.press("Escape");
+    await p.getByRole("button", { name: /^정비.*등대/ }).click();
+    await press(p, "보관 및 설정");
+    await press(p, "앱에서 뽑기");
+    assert.equal(await p.getByRole("button", { name: "앱에서 뽑기", exact: true }).getAttribute("aria-pressed"), "true");
+    await close(p);
+    assert.equal(await p.getByRole("button", { name: "판정 적용", exact: true }).count(), 0);
+    await p.getByRole("button", { name: /^정비.*등대/ }).click();
+    await p.getByLabel("임무 기록", { exact: true }).waitFor();
+  });
+  await run("cloud module loading and failure keep file backup available", async (p) => {
+    await seed(p, {});
+    // Delay the lazy module to observe its loading state, then simulate an offline failure.
+    let release;
+    const gate = new Promise((resolve) => { release = resolve; });
+    await p.route(/(?:assets\/cloud-[^/]+\.js|src\/cloud\.js)/, async (route) => {
+      await gate;
+      await route.abort("failed");
+    });
+    await press(p, "보관 및 설정");
+    await p.getByText("계정 연결 준비 중…", { exact: true }).waitFor();
+    assert.equal(await p.getByRole("button", { name: "Google 계정 연결", exact: true }).isDisabled(), true);
+    release();
+    await p.getByText(/계정 연결을 불러오지 못했습니다/).waitFor();
+    assert.equal(await p.getByRole("button", { name: "전체 백업 내려받기", exact: true }).isEnabled(), true);
+    const downloadEvent = p.waitForEvent("download");
+    await press(p, "전체 백업 내려받기");
+    const downloaded = await downloadEvent;
+    assert.ok(JSON.parse(await fs.readFile(await downloaded.path(), "utf8")).shiftState);
+  });
+  await fs.writeFile(path.join(output, "results.json"), JSON.stringify({ results, failures, pageErrors }, null, 2));
   await browser.close();
   assert.equal(
     pageErrors.length,

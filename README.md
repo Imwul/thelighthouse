@@ -28,13 +28,14 @@ npm run build
 ```sh
 npx playwright install chromium
 LIGHTHOUSE_URL=http://127.0.0.1:5173 npm run test:browser
+LIGHTHOUSE_URL=http://127.0.0.1:5173 npm run test:quality
 ```
 
-이미 설치된 Chromium은 `LIGHTHOUSE_CHROMIUM`에 실행 파일 경로를 지정해 사용할 수 있습니다. `LIGHTHOUSE_SCREENSHOTS`로 화면 캡처 폴더를 지정할 수 있습니다(기본 `/tmp/lighthouse-browser`). 검사는 별도 브라우저 컨텍스트의 가상 기록을 사용하며 실제 사용자의 저장소를 바꾸지 않습니다.
+이미 설치된 Chromium은 `LIGHTHOUSE_CHROMIUM`에 실행 파일 경로를 지정해 사용할 수 있습니다. `LIGHTHOUSE_SCREENSHOTS`로 화면 캡처 폴더를 지정할 수 있습니다(기본 `/tmp/lighthouse-browser`). 검사는 별도 브라우저 컨텍스트의 가상 기록을 사용하며 실제 사용자의 저장소를 바꾸지 않습니다. `test:browser`는 전체 플레이와 데이터 경계의 15개 시나리오, `test:quality`는 320·390·768·1440·3440px 및 두 테마의 주요 화면·도구·긴 콘텐츠를 검사합니다.
 
 ## 저장과 복원
 
-로그인 없이 브라우저 `localStorage`에 진행 중인 밤, 미완성 글, 덱, 일지와 선택 도구 상태를 저장합니다. 기존 `lighthouse_*` 키와 구형 일지 배열 백업을 읽습니다. 잘못된 저장 데이터는 원본을 `*_unreadable_backup` 또는 `*_original_backup` 키에 보존하고 안전한 기본 상태로 복구합니다.
+로그인 없이 브라우저 `localStorage`에 진행 중인 밤, 미완성 글, 덱, 일지와 선택 도구 상태를 저장합니다. 기존 `lighthouse_*` 키와 구형 일지 배열 백업을 읽습니다. 구형 또는 중복 식별자가 있는 일지·소지품·대화는 각 기록의 식별자를 보완해 개별 열기·수정·삭제를 보장합니다. 저장 용량이 부족해도 읽은 글은 메모리에 유지하며 파일로 보관할 수 있습니다. 잘못된 저장 데이터는 원본을 `*_unreadable_backup` 또는 `*_original_backup` 키에 보존하고 안전한 기본 상태로 복구합니다.
 
 보관 및 설정에서 전체 JSON 백업을 내려받을 수 있습니다. 복원 파일은 먼저 검증하며, 전체 복원 전에 현재 상태를 자동으로 백업합니다. 구형 일지만 가져올 때는 다른 상태를 비우지 않습니다. Google 계정 연결 및 Firestore 백업은 사용자가 직접 올리기·복원을 실행하는 방식입니다. 클라우드 모듈은 설정을 열 때 불러옵니다.
 
@@ -48,10 +49,18 @@ LIGHTHOUSE_URL=http://127.0.0.1:5173 npm run test:browser
 - `tests/browser.cjs`: 실제 UI 과제 시나리오.
 - `_bmad-output/`: 전체 원문 독립 검토, BMAD Design Thinking·Problem Solving, 최종 검증 기록.
 
-실제 참가자의 읽기 속도·몰입도와 Google 로그인·클라우드 왕복은 이번 로컬 검증에 포함하지 않았습니다. 실행 결과와 화면 근거는 `_bmad-output/verification-2026-10-08.md`에 기록합니다.
+실제 참가자의 읽기 속도·몰입도와 Google 로그인·클라우드 왕복은 이번 로컬 검증에 포함하지 않았습니다. 최신 실행 결과, 수정 근거와 화면은 [2026-10-21 품질 감사](./_bmad-output/verification-2026-10-21.md)에 기록합니다.
 
 ## 표지 기반 시각 디자인
 
 룰북 표지의 짙은 청색과 은빛 등대·광선·별을 SVG/CSS로 반영했습니다. 기록 면은 밝은 종이/밤 테마를 지원하며, UI 제목·안내는 기능 중심으로 표현합니다. 3440px에서도 작업 공간은1420px, 기록 영역은약880px로 제한하고 외곽의 별·궤도를 넓게 보여줍니다. 320px 날짜·시간 입력은 한 열로 표시합니다.
 
 [BMAD 디자인 씽킹](./_bmad-output/design-thinking-lighthouse-cover-mood-2026-10-08.md)과 [독립 화면 검증](./_bmad-output/ui-cover-audit-2026-10-08.md)에 선택 근거와320·390·768·1440·3440px의 검증 결과를 기록했습니다.
+
+## 최종 품질 감사 (2026-10-21)
+
+BMAD Design Thinking·Problem Solving으로 기록 무결성, 검색, 참조 복귀와 편집적 품질을 검토했습니다. 일지의 반복 카드·그림자를 장부형 행으로 정리하고 긴 제목은 펼쳐서 읽게 했습니다. 규칙은 화면 본문과 같은 콘텐츠를 검색하며, 선택 도구에서 연 규칙은 쓰던 도구로 돌아갈 수 있습니다. 청색 우주·은빛 등대·종이 기록 면과 기존 플레이 규칙은 유지합니다.
+
+- [사용자 여정·대안 비교](./_bmad-output/design-thinking-final-quality-2026-10-21.md)
+- [근본 원인·해결안 평가](./_bmad-output/problem-solution-final-quality-2026-10-21.md)
+- [검증 결과·한계](./_bmad-output/verification-2026-10-21.md)

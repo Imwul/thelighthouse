@@ -113,8 +113,21 @@ const safeRead = (key, fallback) => {
 function useSaved(key, fallback, normalize = (value) => value) {
   const [value, setValue] = useState(() => {
     const original = safeRead(key, fallback);
+    let normalized;
     try {
-      const normalized = normalize(original);
+      normalized = normalize(original);
+    } catch {
+      try {
+        localStorage.setItem(
+          `${key}_unreadable_backup`,
+          JSON.stringify(original),
+        );
+      } catch {
+        /* Leave the original key intact when recovery cannot be saved. */
+      }
+      return fallback();
+    }
+    try {
       if (
         JSON.stringify(original) !== JSON.stringify(normalized) &&
         !localStorage.getItem(`${key}_original_backup`)
@@ -123,18 +136,10 @@ function useSaved(key, fallback, normalize = (value) => value) {
           `${key}_original_backup`,
           JSON.stringify(original),
         );
-      return normalized;
     } catch {
-      try {
-        localStorage.setItem(
-          `${key}_unreadable_backup`,
-          JSON.stringify(original),
-        );
-      } catch {
-        /* The original key remains intact until a successful save. */
-      }
-      return fallback();
+      // A full storage device must not discard valid, readable writing in memory.
     }
+    return normalized;
   });
   useEffect(() => {
     try {
@@ -169,6 +174,13 @@ const cardFrom = (value, suit) => ({
   color: ["하트", "다이아몬드"].includes(suit) ? "적색" : "흑색",
 });
 const uid = () => crypto.randomUUID();
+const normalizeSearch = (text) => text.normalize("NFKC").toLowerCase().replace(/\s+/g, " ").trim();
+const recordText = (value) => {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) return value.map(recordText).join(" ");
+  if (value && typeof value === "object") return Object.values(value).map(recordText).join(" ");
+  return "";
+};
 function Lighthouse({ small = false }) {
   return (
     <svg
@@ -440,6 +452,7 @@ function ManualDraw({ manual, setManual, dice = true, coins = 0 }) {
 export default function App() {
   const [view, setView] = useState("tonight");
   const [panel, setPanel] = useState(null);
+  const [ruleOrigin, setRuleOrigin] = useState(null);
   const [referenceTopic, setReferenceTopic] = useState("loop");
   const [notice, setNotice] = useState("");
   const [keeper, setKeeper] = useSaved(
@@ -527,6 +540,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [cloudBusy, setCloudBusy] = useState(false);
   const [cloud, setCloud] = useState(null);
+  const [cloudError, setCloudError] = useState(false);
   const [openedJournal, setOpenedJournal] = useState(null);
   const [saveError, setSaveError] = useState(false);
   const resultHeading = useRef(null);
@@ -539,6 +553,10 @@ export default function App() {
     seasonEnabled && season ? SEASONS.find((s) => s.id === season.id) : null;
   const beachMode =
     beach?.drawMode || (Array.isArray(beach?.reservedCards) ? "digital" : mode);
+  const journalQuery = normalizeSearch(search);
+  const filteredJournals = journals.filter((entry) =>
+    normalizeSearch(recordText(entry)).includes(journalQuery),
+  );
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? "night" : "paper";
@@ -554,10 +572,12 @@ export default function App() {
         if (active) setCloud(module);
       })
       .catch(() => {
-        if (active)
+        if (active) {
+          setCloudError(true);
           setNotice(
             "계정 연결을 준비하지 못했습니다. 파일 백업을 사용할 수 있습니다.",
           );
+        }
       });
     return () => {
       active = false;
@@ -581,6 +601,7 @@ export default function App() {
   const updateShift = (changes) =>
     setShift((prev) => ({ ...prev, ...changes }));
   const openRules = (topic) => {
+    setRuleOrigin(panel === "rules" ? ruleOrigin : panel);
     setRuleSearch("");
     setReferenceTopic(topic);
     setPanel("rules");
@@ -921,6 +942,7 @@ export default function App() {
     if ("lightDraft" in data) setLightDraft(data.lightDraft);
     if ("signHistory" in data) setSignHistory(data.signHistory);
     setOpenedJournal(null);
+    setManualDuty(null);
     setNotice("백업을 복원했습니다.");
   };
   const importFile = async (event) => {
@@ -1659,13 +1681,7 @@ export default function App() {
               />
             </div>
             <div className="journal-list">
-              {journals
-                .filter((j) =>
-                  JSON.stringify(j)
-                    .toLowerCase()
-                    .includes(search.toLowerCase()),
-                )
-                .map((j) => (
+              {filteredJournals.map((j) => (
                   <article key={j.id} className="journal-entry">
                     <button
                       className="journal-summary"
@@ -1678,7 +1694,7 @@ export default function App() {
                         {j.date || "날짜 없음"}
                         <small>{j.time}</small>
                       </span>
-                      <span>
+                      <span className="journal-title">
                         <strong>{j.weather || "밤의 기록"}</strong>
                         <small>
                           {j.keeperName} · {j.dutiesRaw?.length || 0}개의 일
@@ -1757,6 +1773,15 @@ export default function App() {
                   </article>
                 ))}
             </div>
+            {journals.length > 0 && filteredJournals.length === 0 && (
+              <div className="search-empty" role="status">
+                <h2>일치하는 일지가 없습니다.</h2>
+                <p>다른 기록이나 날씨, 등대지기 이름으로 찾아보세요.</p>
+                <button className="quiet-btn" onClick={() => setSearch("")}>
+                  검색 지우고 전체 일지 보기
+                </button>
+              </div>
+            )}
             {journals.length === 0 && (
               <div className="empty-state">
                 <NotebookPen size={34} />
@@ -1856,12 +1881,20 @@ export default function App() {
             </div>
           )}
           {panel === "rules" && (
-            <RuleReference
-              topic={referenceTopic}
-              setTopic={setReferenceTopic}
-              search={ruleSearch}
-              setSearch={setRuleSearch}
-            />
+            <>
+              {ruleOrigin && (
+                <button className="quiet-btn panel-return" onClick={() => setPanel(ruleOrigin)}>
+                  <ArrowLeft size={16} />
+                  {{ beach: "해변 수색", light: "어둠 속의 빛", seasons: "계절" }[ruleOrigin] || "도구"}으로 돌아가기
+                </button>
+              )}
+              <RuleReference
+                topic={referenceTopic}
+                setTopic={setReferenceTopic}
+                search={ruleSearch}
+                setSearch={setRuleSearch}
+              />
+            </>
           )}
           {panel === "keeper" && (
             <div className="panel-stack">
@@ -2240,7 +2273,7 @@ export default function App() {
               <RuleLink page="56–57" onClick={() => openRules("light")} />
               <p>
                 작은 랜턴으로 질문을 보내세요. <strong>한 밤에 한 번</strong>,
-                동전 두 개로 응답을 판정합니다. 질문은 한 밤에 한 번 가능합니다.
+                동전 두 개로 응답을 판정합니다.
               </p>
               {!shift.lightQuestionAsked && (
                 <>
@@ -2523,13 +2556,15 @@ export default function App() {
               <div className="segmented" aria-label="판정 도구 선택">
                 <button
                   className={mode === "digital" ? "selected" : ""}
-                  onClick={() => setMode("digital")}
+                  aria-pressed={mode === "digital"}
+                  onClick={() => { setMode("digital"); setManualDuty(null); }}
                 >
                   앱에서 뽑기
                 </button>
                 <button
                   className={mode === "physical" ? "selected" : ""}
-                  onClick={() => setMode("physical")}
+                  aria-pressed={mode === "physical"}
+                  onClick={() => { setMode("physical"); setManualDuty(null); }}
                 >
                   실제 도구 결과 입력
                 </button>
@@ -2582,8 +2617,10 @@ export default function App() {
                       클라우드에서 복원
                     </button>
                   </div>
+                  {cloudBusy && <p role="status">클라우드 백업 작업 중…</p>}
                   <button
                     className="quiet-btn"
+                    disabled={cloudBusy}
                     onClick={() =>
                       cloud
                         .signOut(cloud.auth)
@@ -2596,6 +2633,13 @@ export default function App() {
               ) : (
                 <>
                   <p>로그인 없이 이 기기에서 플레이할 수 있습니다.</p>
+                  {!cloud && (
+                    <p className="muted" role="status">
+                      {cloudError
+                        ? "계정 연결을 불러오지 못했습니다. 파일 백업을 사용하거나 네트워크를 확인한 뒤 새로고침해 주세요."
+                        : "계정 연결 준비 중…"}
+                    </p>
+                  )}
                   <button
                     className="quiet-btn"
                     disabled={!cloud}
@@ -2691,48 +2735,10 @@ const TOPICS = [
     keywords: "예시 영감 기록 선대",
   },
 ];
-function RuleReference({ topic, setTopic, search, setSearch }) {
-  const filtered = TOPICS.filter((t) =>
-    `${t.label} ${t.keywords}`.toLowerCase().includes(search.toLowerCase()),
-  );
-  const visible = search ? filtered : TOPICS.filter((t) => t.id === topic);
-  return (
-    <div className="reference">
-      <div className="search-field">
-        <Search size={18} />
-        <input
-          aria-label="규칙 검색"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="점등, 거리, 시간 역행…"
-        />
-      </div>
-      <div className="rule-topics">
-        {TOPICS.map((t) => (
-          <button
-            className={topic === t.id && !search ? "selected" : ""}
-            key={t.id}
-            onClick={() => {
-              setTopic(t.id);
-              setSearch("");
-            }}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-      {visible.length === 0 && (
-        <p className="empty-note">
-          찾는 규칙이 없습니다. 위의 주제로 찾아보세요.
-        </p>
-      )}
-      {visible.map((t) => (
-        <section className="rule-section" key={t.id}>
-          <div className="section-heading">
-            <h2>{t.label}</h2>
-            <span className="page-ref">p.{t.page}</span>
-          </div>
-          {t.id === "loop" && (
+// Search the same element tree that is displayed, so rule text and its index stay together.
+function ruleContent(topic) {
+  return <>
+          {topic === "loop" && (
             <>
               <ol className="rule-steps">
                 <li>
@@ -2774,7 +2780,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               </div>
             </>
           )}
-          {t.id === "beginning" && (
+          {topic === "beginning" && (
             <>
               <p>
                 나 또는 캐릭터의 현재 감정으로 날씨를 선택합니다. 기온, 풍경,
@@ -2788,7 +2794,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               ))}
             </>
           )}
-          {t.id === "lighting" && (
+          {topic === "lighting" && (
             <>
               <p>
                 <strong>동전 앞면 + 빨간 카드가 동시에 나와야 성공.</strong>{" "}
@@ -2801,7 +2807,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               </p>
             </>
           )}
-          {t.id === "maintenance" && (
+          {topic === "maintenance" && (
             <>
               <p>
                 1. 주사위로 무엇을 돌볼지 → 2. 카드 무늬로 일이 어떻게
@@ -2835,7 +2841,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               </p>
             </>
           )}
-          {t.id === "observation" && (
+          {topic === "observation" && (
             <>
               <p>
                 1. 주사위로 대상 → 2. 카드 무늬로 거리 → 3. 관측과 느낌을 기록.
@@ -2864,7 +2870,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               </div>
             </>
           )}
-          {t.id === "happening" && (
+          {topic === "happening" && (
             <>
               <p>
                 카드 한 장. <strong>숫자는 사건</strong>,{" "}
@@ -2881,7 +2887,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               ))}
             </>
           )}
-          {t.id === "ending" && (
+          {topic === "ending" && (
             <>
               <p>
                 플레이를 종료할 때 소등합니다. 밤의 분위기에 맞게 덱을 섞습니다.
@@ -2900,7 +2906,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               </p>
             </>
           )}
-          {t.id === "beach" && (
+          {topic === "beach" && (
             <>
               <p>
                 현재 시 ÷ 2, 나누어떨어지지 않으면 올림. 그 수만큼 카드를 엎어
@@ -2923,7 +2929,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               ))}
             </>
           )}
-          {t.id === "light" && (
+          {topic === "light" && (
             <>
               <p>
                 질문을 보내고 동전 두 개로 응답을 해석합니다. 한 밤에 응답은 한
@@ -2943,7 +2949,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               ))}
             </>
           )}
-          {t.id === "seasons" && (
+          {topic === "seasons" && (
             <>
               <p>
                 선택 확장입니다. 관련 날씨를 관측하며 표식을 채우면 다음 날
@@ -2967,7 +2973,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               </p>
             </>
           )}
-          {t.id === "glossary" && (
+          {topic === "glossary" && (
             <>
               {Object.entries(GLOSSARY).map(([term, meaning]) => (
                 <div className="reference-row" key={term}>
@@ -2977,7 +2983,7 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               ))}
             </>
           )}
-          {t.id === "inspiration" && (
+          {topic === "inspiration" && (
             <>
               <p className="muted">
                 선대 일지의 상황을 한국어로 요약했습니다. 원문 인용이 아닙니다.
@@ -2990,6 +2996,59 @@ function RuleReference({ topic, setTopic, search, setSearch }) {
               ))}
             </>
           )}
+  </>;
+}
+function contentText(node) {
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(contentText).join(" ");
+  return node?.props ? contentText(node.props.children) : "";
+}
+const RULE_SEARCH_TEXT = new Map(TOPICS.map((t) => [
+  t.id, normalizeSearch(`${t.label} ${t.keywords} ${contentText(ruleContent(t.id))}`),
+]));
+function RuleReference({ topic, setTopic, search, setSearch }) {
+  const query = normalizeSearch(search);
+  const filtered = TOPICS.filter((t) => RULE_SEARCH_TEXT.get(t.id).includes(query));
+  const visible = query ? filtered : TOPICS.filter((t) => t.id === topic);
+  return (
+    <div className="reference">
+      <div className="search-field">
+        <Search size={18} />
+        <input
+          aria-label="규칙 검색"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="점등, 거리, 시간 역행…"
+        />
+      </div>
+      <div className="rule-topics">
+        {TOPICS.map((t) => (
+          <button
+            className={topic === t.id && !query ? "selected" : ""}
+            key={t.id}
+            aria-pressed={topic === t.id && !query}
+            onClick={() => {
+              setTopic(t.id);
+              setSearch("");
+            }}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+      {visible.length === 0 && (
+        <div className="search-empty" role="status">
+          <p>찾는 규칙이 없습니다. 다른 단어나 위의 주제로 찾아보세요.</p>
+          <button className="quiet-btn" onClick={() => setSearch("")}>검색 지우기</button>
+        </div>
+      )}
+      {visible.map((t) => (
+        <section className="rule-section" key={t.id}>
+          <div className="section-heading">
+            <h2>{t.label}</h2>
+            <span className="page-ref">p.{t.page}</span>
+          </div>
+          {ruleContent(t.id)}
         </section>
       ))}
     </div>

@@ -500,6 +500,21 @@ function normalizeItem(item) {
     notes: item.notes ?? item.note ?? "",
   };
 }
+// Older exports omitted IDs; duplicate IDs also make edits/deletes affect several records.
+function identifyRecords(records, prefix) {
+  const reserved = new Set(records.map((entry) => String(entry.id ?? "")));
+  const used = new Set();
+  return records.map((entry, index) => {
+    let id = String(entry.id ?? "");
+    if (!id.trim() || used.has(id)) {
+      let suffix = index + 1;
+      do id = `${prefix}-${suffix++}`;
+      while (reserved.has(id) || used.has(id));
+    }
+    used.add(id);
+    return { ...entry, id };
+  });
+}
 function checkBeach(search) {
   if (search === null) return;
   if (!isObject(search)) backupError("beachSearch");
@@ -610,7 +625,10 @@ export function validateBackup(data) {
     )
       backupError(`${section}.lampLitAttempts`);
   });
-  const validated = { ...backup };
+  const validated = {
+    ...backup,
+    journals: identifyRecords(backup.journals, "journal"),
+  };
   if (backup.keeperProfile !== undefined) {
     if (!isObject(backup.keeperProfile)) backupError("keeperProfile");
     checkStrings(
@@ -692,10 +710,12 @@ export function validateBackup(data) {
   }
   if (backup.persistentInventory !== undefined) {
     checkObjects(backup.persistentInventory, "persistentInventory", checkItem);
-    validated.persistentInventory =
-      backup.persistentInventory.map(normalizeItem);
+    validated.persistentInventory = identifyRecords(
+      backup.persistentInventory.map(normalizeItem),
+      "item",
+    );
   }
-  if (backup.lightConversations !== undefined)
+  if (backup.lightConversations !== undefined) {
     checkObjects(
       backup.lightConversations,
       "lightConversations",
@@ -721,6 +741,11 @@ export function validateBackup(data) {
         checkId(item.id, `${section}.id`);
       },
     );
+    validated.lightConversations = identifyRecords(
+      backup.lightConversations,
+      "conversation",
+    );
+  }
   if (backup.seasonMarks !== undefined) {
     if (!isObject(backup.seasonMarks)) backupError("seasonMarks");
     for (const [id, count] of Object.entries(backup.seasonMarks)) {

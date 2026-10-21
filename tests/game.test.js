@@ -773,8 +773,33 @@ test("startup section validation rejects malformed local shapes while accepting 
   );
   assert.deepEqual(
     validateBackup([{ remarks: "이름 없는 오래된 일지" }]).journals,
-    [{ remarks: "이름 없는 오래된 일지" }],
+    [{ id: "journal-1", remarks: "이름 없는 오래된 일지" }],
   );
+});
+
+test("legacy and duplicate record IDs become stable, distinct identities without losing writing", () => {
+  const backup = {
+    journals: [
+      { remarks: "첫 기록" },
+      { id: "journal-1", remarks: "기존 식별자 보존" },
+      { id: "same", remarks: "둘째 기록" },
+      { id: "same", remarks: "셋째 기록" },
+      { id: 1, remarks: "숫자 식별자" },
+      { id: "1", remarks: "문자 식별자" },
+    ],
+    persistentInventory: [{ type: "나침반" }, { type: "망원경" }],
+    lightConversations: [{ question: "어디인가요?" }, { question: "누구인가요?" }],
+  };
+  const restored = validateBackup(backup);
+  for (const key of ["journals", "persistentInventory", "lightConversations"]) {
+    const records = restored[key];
+    assert.equal(new Set(records.map((entry) => String(entry.id))).size, records.length);
+    assert.ok(records.every((entry) => typeof entry.id === "string" && entry.id));
+    assert.deepEqual(validateBackup(restored)[key], records, "reloading keeps identities stable");
+  }
+  assert.equal(restored.journals[1].id, "journal-1");
+  assert.deepEqual(restored.journals.map((entry) => entry.remarks), backup.journals.map((entry) => entry.remarks));
+  assert.equal(backup.journals[0].id, undefined, "source stays intact");
 });
 
 test("malformed imports are rejected before any state replacement", () => {

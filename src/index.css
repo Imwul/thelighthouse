@@ -920,7 +920,7 @@ input[type="checkbox"] {
 .journal-list {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 0;
 }
 .journal-entry {
   background: var(--paper);
@@ -938,12 +938,33 @@ input[type="checkbox"] {
 .journal-summary > svg {
   margin-left: auto;
   color: var(--muted);
+  flex-shrink: 0;
+  transition: transform 150ms ease;
+}
+.journal-summary[aria-expanded="true"] > svg {
+  transform: rotate(90deg);
+}
+.journal-summary:hover {
+  background: var(--soft);
+}
+.journal-title {
+  min-width: 0;
+  flex: 1;
+}
+:is(.journal-title, .journal-body, .conversation, .inventory-item) {
+  overflow-wrap: anywhere;
 }
 .journal-summary > span:nth-child(2) > strong {
   display: block;
   font-family: var(--serif);
   font-size: 20px;
   font-weight: 600;
+}
+.journal-summary[aria-expanded="false"] .journal-title > strong {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .journal-summary small {
   display: block;
@@ -1011,16 +1032,34 @@ input[type="checkbox"] {
 }
 .rule-topics button {
   font-size: 12px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
   padding: 7px 10px;
-  min-height: 36px;
+  min-height: 44px;
   color: var(--muted);
 }
 .rule-topics button.selected {
   color: var(--accent);
-  background: var(--soft);
+  background: transparent;
   border-color: var(--accent);
+}
+.rule-topics button:hover {
+  color: var(--ink);
+  border-bottom-color: var(--muted);
+}
+.panel-return {
+  margin-bottom: 18px;
+}
+.search-empty {
+  max-width: 940px;
+  padding: 30px 0;
+  border-block: 1px solid var(--line);
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+}
+.search-empty h2 {
+  font-size: 23px;
 }
 .rule-section {
   background: var(--paper);
@@ -2011,7 +2050,22 @@ textarea {
 .rule-section,
 .journal-entry {
   border-radius: 5px;
-  box-shadow: 0 12px 35px #05112620;
+  box-shadow: none;
+}
+.journal-entry {
+  border-radius: 0;
+}
+.journal-entry + .journal-entry {
+  border-top: 0;
+}
+.journal-entry:first-child {
+  border-radius: 5px 5px 0 0;
+}
+.journal-entry:last-child {
+  border-radius: 0 0 5px 5px;
+}
+.journal-entry:only-child {
+  border-radius: 5px;
 }
 main > .search-field,
 .journal-list,

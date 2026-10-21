@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "node --test tests/game.test.js",
-    "test:browser": "node tests/browser.cjs"
+    "test:browser": "node tests/browser.cjs",
+    "test:quality": "node tests/quality.cjs"
   },
   "dependencies": {
     "firebase": "^12.14.0",
